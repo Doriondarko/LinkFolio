@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get Your Professional Website — Built in 14 Days</title>
+<meta name="description" content="A professional website built and launched in 14 days. First design directions in 48 hours. Final payment only on approval." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf7;
+    --ink:#0a0a0a;
+    --muted:#6b6b66;
+    --line:#e5e3dc;
+    --card:#ffffff;
+    --accent:#0a0a0a;
+    --error:#c0392b;
+    --success:#27ae60;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"ss01","cv11";
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  .wrap-narrow{max-width:680px;margin:0 auto;padding:0 28px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:-.02em}
+  .logo span{color:#aaa}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:9px 18px;border-radius:999px;text-decoration:none;font-size:13.5px;font-weight:500;transition:opacity .2s}
+  .cta-btn:hover{opacity:.85}
+
+  /* HERO */
+  .hero{padding:80px 0 64px;border-bottom:1px solid var(--line)}
+  .eyebrow{display:inline-block;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:5px 13px;border-radius:999px;background:#fff;margin-bottom:28px}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(36px,5.5vw,60px);line-height:1.04;letter-spacing:-.025em;margin-bottom:20px;max-width:20ch}
+  h1 em{font-style:italic;color:#666}
+  .lede{font-size:clamp(16px,1.5vw,18px);color:#3a3a36;max-width:55ch;margin-bottom:40px}
+  .hero-meta{display:flex;gap:32px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line)}
+  .hero-meta-item small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+  .hero-meta-item strong{font-family:'Fraunces',serif;font-weight:500;font-size:18px}
+
+  /* FORM SECTION */
+  .form-section{padding:80px 0}
+  .section-eyebrow{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block}
+  h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(26px,3.5vw,38px);line-height:1.1;letter-spacing:-.02em;margin-bottom:12px}
+  .form-sub{font-size:16px;color:#3a3a36;margin-bottom:48px;max-width:58ch}
+
+  /* FORM ELEMENTS */
+  .form-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:48px}
+  @media(max-width:680px){.form-card{padding:28px 20px}}
+
+  .form-group{margin-bottom:28px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+  @media(max-width:560px){.form-row{grid-template-columns:1fr}}
+
+  label{display:block;font-size:13px;font-weight:500;letter-spacing:.01em;color:var(--ink);margin-bottom:8px}
+  label .opt{color:var(--muted);font-weight:400;margin-left:4px}
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea{
+    width:100%;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    color:var(--ink);
+    background:#fff;
+    transition:border-color .15s;
+    outline:none;
+    -webkit-appearance:none;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  textarea:focus{border-color:var(--ink)}
+  input::placeholder,textarea::placeholder{color:#b0b0a8}
+  textarea{resize:vertical;min-height:100px;line-height:1.5}
+
+  /* RADIO GROUP */
+  .radio-heading{font-size:13px;font-weight:500;margin-bottom:14px}
+  .radio-options{display:grid;gap:10px}
+  .radio-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 16px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    cursor:pointer;
+    font-size:14.5px;
+    transition:border-color .15s,background .15s;
+    user-select:none;
+  }
+  .radio-label:hover{border-color:#b8b8b0;background:#fafaf7}
+  .radio-label input[type="radio"]{
+    width:16px;height:16px;
+    accent-color:var(--ink);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+  .radio-label.selected{border-color:var(--ink);background:#f5f5f0}
+  .other-expand{margin-top:10px;display:none}
+  .other-expand.visible{display:block}
+
+  /* LINKEDIN COPY */
+  .linkedin-note{
+    font-size:13px;
+    color:var(--muted);
+    padding:11px 14px;
+    background:#f5f5f2;
+    border:1px solid var(--line);
+    border-radius:4px;
+    margin-top:-16px;
+    margin-bottom:28px;
+    line-height:1.5;
+  }
+  .linkedin-note a{color:var(--ink);text-decoration:underline}
+
+  /* PAYMENT SECTION */
+  .payment-divider{border-top:1px solid var(--line);margin:36px 0 32px}
+  .payment-heading{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:6px;letter-spacing:-.01em}
+  .payment-details{font-size:14px;color:#3a3a36;margin-bottom:24px}
+  .payment-details strong{color:var(--ink)}
+
+  .upload-zone{
+    border:2px dashed var(--line);
+    border-radius:6px;
+    padding:32px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .2s,background .2s;
+    position:relative;
+    background:#fafaf7;
+  }
+  .upload-zone:hover{border-color:#b8b8b0;background:#f5f5f0}
+  .upload-zone.has-file{border-color:var(--ink);background:#f5f5f0;border-style:solid}
+  .upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+  .upload-icon{font-size:28px;display:block;margin-bottom:10px;color:var(--muted)}
+  .upload-text{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px}
+  .upload-hint{font-size:12px;color:var(--muted)}
+  .upload-preview{max-width:180px;max-height:180px;object-fit:contain;border-radius:4px;margin-top:14px;display:none;border:1px solid var(--line)}
+  .upload-filename{font-size:12.5px;color:var(--muted);margin-top:8px;display:none}
+
+  .microcopy{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.55}
+
+  /* SUBMIT */
+  .submit-btn{
+    width:100%;
+    padding:15px;
+    background:var(--ink);
+    color:#fff;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    margin-top:32px;
+    transition:opacity .2s;
+    letter-spacing:.01em;
+  }
+  .submit-btn:hover{opacity:.88}
+  .submit-btn:disabled{opacity:.5;cursor:not-allowed}
+  .submit-btn .btn-text{display:inline-block}
+  .submit-btn .btn-loading{display:none}
+
+  /* MESSAGES */
+  .form-error{display:none;background:#fdf0ef;border:1px solid #e8b4b0;color:var(--error);padding:12px 16px;border-radius:4px;font-size:13.5px;margin-top:16px}
+  .form-error.visible{display:block}
+
+  /* SUCCESS */
+  .success-state{
+    display:none;
+    text-align:center;
+    padding:64px 28px;
+  }
+  .success-state.visible{display:block}
+  .success-check{font-size:44px;margin-bottom:20px}
+  .success-state h3{font-family:'Fraunces',serif;font-size:32px;font-weight:500;margin-bottom:12px;letter-spacing:-.015em}
+  .success-state p{font-size:16px;color:#3a3a36;max-width:48ch;margin:0 auto}
+
+  /* FOOTER */
+  footer{padding:36px 0;border-top:1px solid var(--line);background:var(--bg)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted)}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--ink)}
+
+  .field-error{border-color:var(--error) !important}
+  .field-error-msg{font-size:12px;color:var(--error);margin-top:5px;display:none}
+  .field-error-msg.visible{display:block}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Agency<span>.</span></div>
+    <a href="#order" class="cta-btn">Start your site →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Professional websites · 14-day delivery</span>
+    <h1>Your professional site, built and live in <em>14 days.</em></h1>
+    <p class="lede">First design directions in 48 hours. Full build with unlimited revisions. You pay the remaining 8,000 EGP only when you approve every pixel — not before.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><small>Deposit to start</small><strong>2,000 EGP</strong></div>
+      <div class="hero-meta-item"><small>First designs</small><strong>48 hours</strong></div>
+      <div class="hero-meta-item"><small>Full build</small><strong>14 days</strong></div>
+      <div class="hero-meta-item"><small>Final payment</small><strong>On your approval</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- FORM -->
+<section id="order" class="form-section">
+  <div class="wrap-narrow">
+    <span class="section-eyebrow">The Order Form</span>
+    <h2>Let's build your site.</h2>
+    <p class="form-sub">Fill this in — takes 3 minutes. I'll send two design directions based on your answers within 48 hours.</p>
+
+    <div class="form-card">
+
+      <!-- SUCCESS STATE -->
+      <div class="success-state" id="successState">
+        <div class="success-check">✓</div>
+        <h3>You're in. Check your email.</h3>
+        <p>I've sent a confirmation to your inbox with the full timeline. First design directions land in 48 hours.</p>
+      </div>
+
+      <!-- FORM -->
+      <form id="orderForm" novalidate>
+
+        <!-- NAME -->
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Abdulrahman Ibrahim" autocomplete="name" required />
+          <div class="field-error-msg" id="nameErr">Please enter your name.</div>
+        </div>
+
+        <!-- EMAIL + WHATSAPP -->
+        <div class="form-row">
+          <div>
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+            <div class="field-error-msg" id="emailErr">Please enter a valid email.</div>
+          </div>
+          <div>
+            <label for="whatsapp">WhatsApp number</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="01xxxxxxxxx" autocomplete="tel" required />
+            <div class="field-error-msg" id="whatsappErr">Please enter your WhatsApp number.</div>
+          </div>
+        </div>
+
+        <!-- LINKEDIN NOTE -->
+        <div class="linkedin-note">
+          I'll use your LinkedIn profile to pull your experience, projects, and credentials into the site — so you don't have to write a word of copy.
+        </div>
+
+        <!-- GOAL RADIO -->
+        <div class="form-group">
+          <div class="radio-heading">What's the #1 thing this website should do for you?</div>
+          <div class="radio-options" id="goalOptions">
+            <label class="radio-label" id="goalLabel1">
+              <input type="radio" name="goal" value="Make me look credible to clients" required />
+              Make me look credible to clients
+            </label>
+            <label class="radio-label" id="goalLabel2">
+              <input type="radio" name="goal" value="Help me sell my service/product" />
+              Help me sell my service/product
+            </label>
+            <label class="radio-label" id="goalLabel3">
+              <input type="radio" name="goal" value="Help me land jobs / show my CV" />
+              Help me land jobs / show my CV
+            </label>
+            <label class="radio-label" id="goalLabel4">
+              <input type="radio" name="goal" value="Other" />
+              Other
+            </label>
+          </div>
+          <div class="other-expand" id="otherExpand">
+            <input type="text" id="otherGoal" placeholder="Tell me what you need…" />
+          </div>
+          <div class="field-error-msg" id="goalErr">Please select an option.</div>
+        </div>
+
+        <!-- STYLE REFS -->
+        <div class="form-group">
+          <label for="styleRefs">Paste 1–3 sites you like the style of <span class="opt">(optional)</span></label>
+          <textarea id="styleRefs" name="styleRefs" rows="3" placeholder="Paste links, one per line…"></textarea>
+        </div>
+
+        <!-- BRAND COLORS -->
+        <div class="form-group">
+          <label for="brandColors">Brand colors or vibe? <span class="opt">(optional)</span></label>
+          <input type="text" id="brandColors" name="brandColors" placeholder="Leave blank if you want me to pick" />
+        </div>
+
+        <!-- SPECIFIC NEEDS -->
+        <div class="form-group">
+          <label for="specificNeeds">Anything specific you need? <span class="opt">(optional)</span></label>
+          <textarea id="specificNeeds" name="specificNeeds" rows="4" placeholder="Booking calendar, contact form, portfolio gallery, etc."></textarea>
+        </div>
+
+        <!-- PAYMENT -->
+        <div class="payment-divider"></div>
+        <div class="payment-heading">Deposit: 2,000 EGP</div>
+        <p class="payment-details">
+          Pay via <strong>InstaPay</strong>, <strong>Vodafone Cash</strong>, or <strong>Card</strong> to:<br>
+          <strong style="font-size:16px;letter-spacing:.02em">01091225373</strong>
+        </p>
+
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="paymentFile" name="paymentFile" accept="image/*" />
+          <span class="upload-icon">↑</span>
+          <p class="upload-text">Upload your payment screenshot</p>
+          <p class="upload-hint">JPEG or PNG — tap here or drag &amp; drop</p>
+          <img class="upload-preview" id="uploadPreview" alt="Payment preview" />
+          <p class="upload-filename" id="uploadFilename"></p>
+        </div>
+        <div class="field-error-msg" id="fileErr">Please upload your payment screenshot.</div>
+
+        <p class="microcopy">Refundable if I don't deliver in 14 days. Final 8,000 EGP only after you approve the site.</p>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-text">Submit order →</span>
+          <span class="btn-loading">Submitting…</span>
+        </button>
+
+        <div class="form-error" id="formError">
+          Something went wrong. Please try again or WhatsApp me directly at 01091225373.
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr"></span> Agency. Professional websites built for professionals.</div>
+    <div><a href="mailto:abdulrahmanibrahimfarouk2006@gmail.com">abdulrahmanibrahimfarouk2006@gmail.com</a></div>
+  </div>
+</footer>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  // ─── CONFIG — replace these with your EmailJS values ───────────────────────
+  const EMAILJS_PUBLIC_KEY         = 'YOUR_EMAILJS_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID         = 'YOUR_EMAILJS_SERVICE_ID';
+  const EMAILJS_TEMPLATE_CONFIRM   = 'YOUR_CONFIRMATION_TEMPLATE_ID';
+  const EMAILJS_TEMPLATE_NOTIFY    = 'YOUR_NOTIFICATION_TEMPLATE_ID';
+  // ───────────────────────────────────────────────────────────────────────────
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Radio highlight
+  document.querySelectorAll('input[name="goal"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.radio-label').forEach(l => l.classList.remove('selected'));
+      radio.closest('.radio-label').classList.add('selected');
+      const expand = document.getElementById('otherExpand');
+      expand.classList.toggle('visible', radio.value === 'Other');
+      if (radio.value !== 'Other') document.getElementById('otherGoal').value = '';
+    });
+  });
+
+  // File upload preview
+  const paymentFile = document.getElementById('paymentFile');
+  const uploadZone  = document.getElementById('uploadZone');
+  const preview     = document.getElementById('uploadPreview');
+  const filename    = document.getElementById('uploadFilename');
+
+  paymentFile.addEventListener('change', () => {
+    const file = paymentFile.files[0];
+    if (!file) return;
+    uploadZone.classList.add('has-file');
+    filename.textContent = file.name;
+    filename.style.display = 'block';
+    const reader = new FileReader();
+    reader.onload = e => {
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Compress image client-side before upload
+  function compressImage(file, maxPx = 1200, quality = 0.75) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          const scale = Math.min(1, maxPx / Math.max(img.width, img.height));
+          const canvas = document.createElement('canvas');
+          canvas.width  = img.width  * scale;
+          canvas.height = img.height * scale;
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/jpeg', quality).split(',')[1]);
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Validation helpers
+  function setError(inputId, msgId, show) {
+    const el  = document.getElementById(inputId);
+    const msg = document.getElementById(msgId);
+    if (el)  el.classList.toggle('field-error', show);
+    if (msg) msg.classList.toggle('visible', show);
+  }
+
+  function validateForm() {
+    let valid = true;
+    const name    = document.getElementById('name').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const wp      = document.getElementById('whatsapp').value.trim();
+    const goal    = document.querySelector('input[name="goal"]:checked');
+    const hasFile = paymentFile.files.length > 0;
+
+    setError('name',     'nameErr',     !name);
+    setError('email',    'emailErr',    !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    setError('whatsapp', 'whatsappErr', !wp);
+    if (!goal) { document.getElementById('goalErr').classList.add('visible'); valid = false; }
+    else        { document.getElementById('goalErr').classList.remove('visible'); }
+    setError('paymentFile', 'fileErr', !hasFile);
+
+    return !name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !wp || !goal || !hasFile
+      ? false : true;
+  }
+
+  // Form submit
+  document.getElementById('orderForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.querySelector('.btn-text').style.display    = 'none';
+    btn.querySelector('.btn-loading').style.display = 'inline';
+    document.getElementById('formError').classList.remove('visible');
+
+    const name          = document.getElementById('name').value.trim();
+    const firstName     = name.split(' ')[0];
+    const email         = document.getElementById('email').value.trim();
+    const whatsapp      = document.getElementById('whatsapp').value.trim();
+    const goal          = document.querySelector('input[name="goal"]:checked').value;
+    const otherGoal     = document.getElementById('otherGoal').value.trim();
+    const styleRefs     = document.getElementById('styleRefs').value.trim();
+    const brandColors   = document.getElementById('brandColors').value.trim();
+    const specificNeeds = document.getElementById('specificNeeds').value.trim();
+    const file          = paymentFile.files[0];
+
+    // Delivery date = today + 2 days
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 2);
+    const deliveryStr  = deliveryDate.toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+
+    try {
+      // Compress & encode screenshot
+      const base64Screenshot = await compressImage(file);
+
+      // 1. Send to Vercel function → Notion + ImgBB
+      const apiRes = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, email, whatsapp, goal, otherGoal,
+          styleRefs, brandColors, specificNeeds,
+          paymentScreenshot: base64Screenshot
+        })
+      });
+
+      const apiData = await apiRes.json();
+      if (!apiRes.ok) throw new Error(apiData.error || 'API error');
+
+      const screenshotUrl = apiData.screenshotUrl || '(not available)';
+
+      // 2. Send confirmation email to submitter
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CONFIRM, {
+        first_name:    firstName,
+        to_email:      email,
+        delivery_date: deliveryStr,
+      });
+
+      // 3. Send notification email to owner
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_NOTIFY, {
+        client_name:     name,
+        client_email:    email,
+        client_whatsapp: whatsapp,
+        client_goal:     goal,
+        other_goal:      otherGoal  || '—',
+        style_refs:      styleRefs  || '—',
+        brand_colors:    brandColors || '—',
+        specific_needs:  specificNeeds || '—',
+        screenshot_url:  screenshotUrl,
+        submitted_at:    new Date().toLocaleString('en-GB'),
+      });
+
+      // Show success
+      document.getElementById('orderForm').style.display = 'none';
+      document.getElementById('successState').classList.add('visible');
+
+    } catch (err) {
+      console.error(err);
+      document.getElementById('formError').classList.add('visible');
+      btn.disabled = false;
+      btn.querySelector('.btn-text').style.display    = 'inline';
+      btn.querySelector('.btn-loading').style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
