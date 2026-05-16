@@ -146,53 +146,150 @@
 
   h1.hero-h1{
     font-family:'Inter Tight',sans-serif;
-    font-weight:800;
-    font-size:clamp(48px,9vw,128px);
-    line-height:.92;
+    font-weight:900;
+    font-size:clamp(40px,7vw,104px);
+    line-height:.94;
     letter-spacing:-.055em;
-    margin-bottom:0;
-    max-width:15ch;
+    margin-bottom:36px;
+    max-width:none;
   }
   h1.hero-h1 .strike{position:relative;display:inline-block;color:var(--muted)}
   h1.hero-h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:6px;background:var(--ink);transform:rotate(-3deg)}
 
-  /* GOLD EPOXY RESIN DRIPS */
-  .title-drips{
-    display:block;
-    width:100%;
-    max-width:15ch;
-    height:64px;
-    margin-top:-6px;       /* slight overlap into title bottom */
-    margin-bottom:30px;    /* preserves rough gap to lede (was 36 on h1) */
-    pointer-events:none;
+  /* MOLTEN GOLD H1 — replicates the reference image */
+  .gold-h1{position:relative;z-index:2}
+  .gold-h1 .hl-line{
     position:relative;
-    z-index:1;
-    overflow:visible;
+    display:block;
+    color:#fafaf7;            /* white base layer */
+    isolation:isolate;
   }
-  .title-drips svg{display:block;width:100%;height:100%;overflow:visible}
-  .drip-inner{
+  /* Gold overlay — duplicates the text via attr() and clips a vertical gold gradient to the glyphs */
+  .gold-h1 .hl-line::before{
+    content:attr(data-text);
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      /* moving shimmer streak */
+      linear-gradient(110deg,
+        transparent 28%,
+        rgba(255,255,235,.55) 42%,
+        rgba(255,255,235,0) 58%
+      ),
+      /* horizontal pockets of richer gold */
+      radial-gradient(ellipse 40% 70% at 18% 75%,rgba(255,224,121,.45),transparent 60%),
+      radial-gradient(ellipse 40% 70% at 78% 80%,rgba(212,160,42,.4),transparent 60%),
+      /* vertical body gradient — transparent top, dense gold bottom */
+      linear-gradient(180deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(255,244,200,.35) 40%,
+        rgba(255,224,121,.85) 50%,
+        #ffd86a 62%,
+        #e6b73d 76%,
+        #b8861f 90%,
+        #5a3d0a 100%
+      );
+    background-size:220% 100%, 100% 100%, 100% 100%, 100% 220%;
+    background-position:-110% 0, 0 0, 0 0, 50% 100%;
+    background-repeat:no-repeat;
+    -webkit-background-clip:text;
+            background-clip:text;
+    color:transparent;
+    animation:goldStreak 7s linear infinite, goldOoze 8s ease-in-out infinite;
+    filter:drop-shadow(0 6px 22px rgba(212,160,42,.28));
+  }
+  @keyframes goldStreak{
+    0%   { background-position:-110% 0, 0 0, 0 0, 50% 100%; }
+    100% { background-position: 210% 0, 0 0, 0 0, 50% 100%; }
+  }
+  @keyframes goldOoze{
+    0%,100% { background-position-y: 100%, 0, 0, 100%; }
+    50%     { background-position-y: 100%, 0, 0, 78%; }
+  }
+  /* Violet rim halo behind gold areas */
+  .gold-h1 .hl-line::after{
+    content:"";
+    position:absolute;
+    left:-4%;right:-4%;
+    top:55%;bottom:-10%;
+    background:radial-gradient(ellipse 70% 80% at 50% 60%,
+      rgba(146,90,200,.18),
+      rgba(146,90,200,.06) 45%,
+      transparent 70%);
+    z-index:-1;
+    pointer-events:none;
+    filter:blur(12px);
+  }
+
+  /* Drips hanging from each line */
+  .line-drips{
+    position:absolute;
+    left:0;right:0;
+    top:88%;
+    pointer-events:none;
+    overflow:visible;
+    z-index:3;
+  }
+  .line-drips-top{height:34px}
+  .line-drips-bottom{height:82px}
+  .line-drips svg{display:block;width:100%;height:100%;overflow:visible}
+
+  .d-inner{
     transform-box:fill-box;
     transform-origin:top center;
-    animation:dripFlow 6s cubic-bezier(.5,.05,.5,.95) infinite;
-    filter:drop-shadow(0 4px 6px rgba(122,84,16,.35));
+    animation:dripOoze 6.5s cubic-bezier(.5,.05,.5,.95) infinite;
+    filter:drop-shadow(0 3px 4px rgba(122,84,16,.4));
     will-change:transform,opacity;
   }
-  @keyframes dripFlow{
-    0%, 100% { transform:scaleY(.18); opacity:0; }
-    8%       { opacity:1; }
-    55%      { transform:scaleY(1); }
-    72%      { transform:scaleY(1.08); }       /* slight stretch as if heavy */
-    85%      { transform:scaleY(.96); }         /* snap back */
-    96%      { transform:scaleY(.45); opacity:1; }
+  @keyframes dripOoze{
+    0%,100% { transform:scaleY(.22); opacity:0; }
+    8%      { opacity:1; }
+    55%     { transform:scaleY(1); }
+    72%     { transform:scaleY(1.07); }
+    88%     { transform:scaleY(.55); opacity:1; }
   }
-  .drip-1 .drip-inner{ animation-delay: 0s;    animation-duration:6.2s; }
-  .drip-2 .drip-inner{ animation-delay:-1.5s;  animation-duration:7.4s; }
-  .drip-3 .drip-inner{ animation-delay:-2.9s;  animation-duration:5.6s; }
-  .drip-4 .drip-inner{ animation-delay:-4.1s;  animation-duration:6.8s; }
-  .drip-5 .drip-inner{ animation-delay:-5.3s;  animation-duration:6.0s; }
-  .drip-6 .drip-inner{ animation-delay:-3.4s;  animation-duration:7.0s; }
-  @media (prefers-reduced-motion: reduce){
-    .drip-inner{ animation:none; transform:scaleY(.7); }
+  .drip-a .d-inner{ animation-delay: 0s;   animation-duration:6.5s; }
+  .drip-b .d-inner{ animation-delay:-1.2s; animation-duration:7.2s; }
+  .drip-c .d-inner{ animation-delay:-2.5s; animation-duration:5.8s; }
+  .drip-d .d-inner{ animation-delay:-3.8s; animation-duration:6.7s; }
+  .drip-e .d-inner{ animation-delay:-5.0s; animation-duration:6.2s; }
+  .drip-f .d-inner{ animation-delay:-3.0s; animation-duration:7.0s; }
+  .drip-g .d-inner{ animation-delay:-4.5s; animation-duration:6.0s; }
+  .drip-h .d-inner{ animation-delay:-1.8s; animation-duration:6.8s; }
+
+  /* Detached floating gold bead between words */
+  .float-bead{
+    position:absolute;
+    width:clamp(10px,1.1vw,18px);
+    height:clamp(10px,1.1vw,18px);
+    border-radius:50%;
+    background:radial-gradient(circle at 32% 28%,#fff8d0 0%,#ffe079 28%,#d4a02a 65%,#5a3d0a 100%);
+    box-shadow:
+      0 0 14px rgba(212,160,42,.45),
+      0 4px 8px rgba(0,0,0,.45),
+      inset -2px -3px 5px rgba(0,0,0,.35);
+    pointer-events:none;
+    z-index:5;
+    top:-22%;
+    left:62%;
+    animation:beadFloat 4.5s ease-in-out infinite;
+  }
+  @keyframes beadFloat{
+    0%,100% { transform:translate(0,0); }
+    50%     { transform:translate(2px,-9px); }
+  }
+
+  @media(max-width:720px){
+    .float-bead{top:-12%;left:68%}
+    .line-drips-top{height:22px}
+    .line-drips-bottom{height:56px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .gold-h1 .hl-line::before{ animation:none; }
+    .d-inner{ animation:none; transform:scaleY(.7); }
+    .float-bead{ animation:none; }
   }
 
   .lede{
@@ -721,78 +818,10 @@
       <span class="eyebrow"><span class="dot"></span>Only 2 spots left in May</span>
       <span class="eyebrow warm">100+ sites delivered</span>
     </div>
-    <h1 class="hero-h1" data-reveal-words>Look expensive. In 14 days. Or refund.</h1>
-    <div class="title-drips" aria-hidden="true">
-      <svg viewBox="0 0 600 64" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#fff6c2"/>
-            <stop offset="20%"  stop-color="#ffe079"/>
-            <stop offset="50%"  stop-color="#d4a02a"/>
-            <stop offset="82%"  stop-color="#7a5410"/>
-            <stop offset="100%" stop-color="#3b2700"/>
-          </linearGradient>
-          <radialGradient id="beadHi" cx="35%" cy="30%" r="65%">
-            <stop offset="0%"  stop-color="rgba(255,255,255,.9)"/>
-            <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
-          </radialGradient>
-        </defs>
-
-        <!-- Drip 1: short slender -->
-        <g class="drip drip-1" transform="translate(50 0)">
-          <g class="drip-inner">
-            <path d="M -7 0 C -6 14 -4 30 -4 42 A 4 4 0 1 0 4 42 C 4 30 6 14 7 0 Z" fill="url(#goldGrad)"/>
-            <path d="M -3 6 Q -2 24 -3 40" stroke="rgba(255,250,210,.55)" stroke-width="1" fill="none" stroke-linecap="round"/>
-            <circle cx="-1" cy="42" r="3.5" fill="url(#beadHi)"/>
-          </g>
-        </g>
-
-        <!-- Drip 2: long fat -->
-        <g class="drip drip-2" transform="translate(120 0)">
-          <g class="drip-inner">
-            <path d="M -9 0 C -8 18 -6 40 -6 56 A 6 6 0 1 0 6 56 C 6 40 8 18 9 0 Z" fill="url(#goldGrad)"/>
-            <path d="M -4 8 Q -3 30 -5 52" stroke="rgba(255,250,210,.6)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-            <circle cx="-2" cy="54" r="4.5" fill="url(#beadHi)"/>
-          </g>
-        </g>
-
-        <!-- Drip 3: medium -->
-        <g class="drip drip-3" transform="translate(200 0)">
-          <g class="drip-inner">
-            <path d="M -7 0 C -6 16 -4 36 -4 48 A 4.5 4.5 0 1 0 5 48 C 5 36 6 16 7 0 Z" fill="url(#goldGrad)"/>
-            <path d="M -3 7 Q -2 26 -3 45" stroke="rgba(255,250,210,.55)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-            <circle cx="-1" cy="47" r="3.8" fill="url(#beadHi)"/>
-          </g>
-        </g>
-
-        <!-- Drip 4: long slender -->
-        <g class="drip drip-4" transform="translate(280 0)">
-          <g class="drip-inner">
-            <path d="M -6 0 C -5 20 -3 42 -3 56 A 4 4 0 1 0 5 56 C 5 42 6 20 7 0 Z" fill="url(#goldGrad)"/>
-            <path d="M -2 9 Q -1 32 -3 54" stroke="rgba(255,250,210,.55)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-            <circle cx="0" cy="55" r="3.6" fill="url(#beadHi)"/>
-          </g>
-        </g>
-
-        <!-- Drip 5: short bulbous -->
-        <g class="drip drip-5" transform="translate(355 0)">
-          <g class="drip-inner">
-            <path d="M -8 0 C -7 12 -5 28 -5 40 A 5 5 0 1 0 5 40 C 5 28 7 12 8 0 Z" fill="url(#goldGrad)"/>
-            <path d="M -3 6 Q -2 22 -3 38" stroke="rgba(255,250,210,.55)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-            <circle cx="-1" cy="40" r="4" fill="url(#beadHi)"/>
-          </g>
-        </g>
-
-        <!-- Drip 6: thin tall accent -->
-        <g class="drip drip-6" transform="translate(420 0)">
-          <g class="drip-inner">
-            <path d="M -5 0 C -4 16 -2.5 36 -2.5 50 A 3.5 3.5 0 1 0 4.5 50 C 4.5 36 5 16 6 0 Z" fill="url(#goldGrad)"/>
-            <path d="M -2 7 Q -1 28 -2 48" stroke="rgba(255,250,210,.5)" stroke-width="1" fill="none" stroke-linecap="round"/>
-            <circle cx="0" cy="50" r="3.2" fill="url(#beadHi)"/>
-          </g>
-        </g>
-      </svg>
-    </div>
+    <h1 class="hero-h1 gold-h1">
+      <span class="hl-line" data-text="Look expensive. In 14">Look expensive. In 14<span class="float-bead" aria-hidden="true"></span><span class="line-drips line-drips-top" aria-hidden="true"><svg viewBox="0 0 600 34" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldA" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff6c2"/><stop offset="20%" stop-color="#ffe079"/><stop offset="55%" stop-color="#d4a02a"/><stop offset="82%" stop-color="#7a5410"/><stop offset="100%" stop-color="#3b2700"/></linearGradient><radialGradient id="hiA" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="rgba(255,255,255,.95)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><g class="drip drip-a" transform="translate(38 0)"><g class="d-inner"><path d="M -4 0 C -3 7 -2 15 -2 19 A 2.5 2.5 0 1 0 3 19 C 3 15 3 7 4 0 Z" fill="url(#goldA)"/><circle cx="0" cy="19" r="2.2" fill="url(#hiA)"/></g></g><g class="drip drip-b" transform="translate(105 0)"><g class="d-inner"><path d="M -5 0 C -4 9 -3 19 -3 24 A 3 3 0 1 0 3 24 C 3 19 4 9 5 0 Z" fill="url(#goldA)"/><circle cx="-1" cy="24" r="2.6" fill="url(#hiA)"/></g></g><g class="drip drip-c" transform="translate(165 0)"><g class="d-inner"><path d="M -3 0 C -2.5 6 -2 12 -2 16 A 2 2 0 1 0 2 16 C 2 12 2.5 6 3 0 Z" fill="url(#goldA)"/><circle cx="0" cy="16" r="1.8" fill="url(#hiA)"/></g></g><g class="drip drip-d" transform="translate(228 0)"><g class="d-inner"><path d="M -4 0 C -3 8 -2 17 -2 22 A 2.5 2.5 0 1 0 3 22 C 3 17 3 8 4 0 Z" fill="url(#goldA)"/><circle cx="0" cy="22" r="2.3" fill="url(#hiA)"/></g></g><g class="drip drip-e" transform="translate(290 0)"><g class="d-inner"><path d="M -3 0 C -2 6 -1.5 12 -1.5 16 A 1.8 1.8 0 1 0 2 16 C 2 12 2.5 6 3 0 Z" fill="url(#goldA)"/><circle cx="0" cy="16" r="1.6" fill="url(#hiA)"/></g></g><g class="drip drip-f" transform="translate(355 0)"><g class="d-inner"><path d="M -4 0 C -3 7 -2 15 -2 20 A 2.5 2.5 0 1 0 3 20 C 3 15 3 7 4 0 Z" fill="url(#goldA)"/><circle cx="0" cy="20" r="2.1" fill="url(#hiA)"/></g></g><g class="drip drip-g" transform="translate(420 0)"><g class="d-inner"><path d="M -3 0 C -2.5 5 -2 11 -2 15 A 2 2 0 1 0 2 15 C 2 11 2.5 5 3 0 Z" fill="url(#goldA)"/><circle cx="0" cy="15" r="1.7" fill="url(#hiA)"/></g></g><g class="drip drip-h" transform="translate(490 0)"><g class="d-inner"><path d="M -4 0 C -3 8 -2 16 -2 21 A 2.5 2.5 0 1 0 3 21 C 3 16 3 8 4 0 Z" fill="url(#goldA)"/><circle cx="0" cy="21" r="2.2" fill="url(#hiA)"/></g></g></svg></span></span>
+      <span class="hl-line" data-text="days. Or refund.">days. Or refund.<span class="line-drips line-drips-bottom" aria-hidden="true"><svg viewBox="0 0 600 82" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldB" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff6c2"/><stop offset="20%" stop-color="#ffe079"/><stop offset="55%" stop-color="#d4a02a"/><stop offset="82%" stop-color="#7a5410"/><stop offset="100%" stop-color="#3b2700"/></linearGradient><radialGradient id="hiB" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="rgba(255,255,255,.95)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><g class="drip drip-a" transform="translate(40 0)"><g class="d-inner"><path d="M -7 0 C -6 18 -4 40 -4 54 A 4.5 4.5 0 1 0 5 54 C 5 40 6 18 7 0 Z" fill="url(#goldB)"/><path d="M -2 8 Q -1 30 -3 50" stroke="rgba(255,250,210,.55)" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="0" cy="52" r="4" fill="url(#hiB)"/></g></g><g class="drip drip-b" transform="translate(110 0)"><g class="d-inner"><path d="M -9 0 C -8 20 -6 44 -6 60 A 6 6 0 1 0 6 60 C 6 44 8 20 9 0 Z" fill="url(#goldB)"/><path d="M -4 9 Q -3 34 -5 56" stroke="rgba(255,250,210,.6)" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="-2" cy="58" r="5" fill="url(#hiB)"/></g></g><g class="drip drip-c" transform="translate(180 0)"><g class="d-inner"><path d="M -7 0 C -6 17 -4 38 -4 50 A 4.5 4.5 0 1 0 5 50 C 5 38 6 17 7 0 Z" fill="url(#goldB)"/><path d="M -2 8 Q -1 28 -3 47" stroke="rgba(255,250,210,.55)" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="0" cy="48" r="3.9" fill="url(#hiB)"/></g></g><g class="drip drip-d" transform="translate(250 0)"><g class="d-inner"><path d="M -6 0 C -5 20 -3 44 -3 60 A 4 4 0 1 0 5 60 C 5 44 6 20 7 0 Z" fill="url(#goldB)"/><path d="M -2 9 Q -1 34 -3 56" stroke="rgba(255,250,210,.5)" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="0" cy="58" r="4" fill="url(#hiB)"/></g></g><g class="drip drip-e" transform="translate(318 0)"><g class="d-inner"><path d="M -8 0 C -7 14 -5 30 -5 42 A 5 5 0 1 0 5 42 C 5 30 7 14 8 0 Z" fill="url(#goldB)"/><path d="M -3 7 Q -2 24 -3 40" stroke="rgba(255,250,210,.55)" stroke-width="1.2" fill="none" stroke-linecap="round"/><circle cx="-1" cy="42" r="4.2" fill="url(#hiB)"/></g></g><g class="drip drip-f" transform="translate(385 0)"><g class="d-inner"><path d="M -7 0 C -6 18 -4 40 -4 54 A 4.5 4.5 0 1 0 5 54 C 5 40 6 18 7 0 Z" fill="url(#goldB)"/><path d="M -2 8 Q -1 30 -3 50" stroke="rgba(255,250,210,.5)" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="0" cy="52" r="3.9" fill="url(#hiB)"/></g></g><g class="drip drip-g" transform="translate(450 0)"><g class="d-inner"><path d="M -5 0 C -4 16 -2.5 36 -2.5 48 A 3.5 3.5 0 1 0 4.5 48 C 4.5 36 5 16 6 0 Z" fill="url(#goldB)"/><path d="M -2 7 Q -1 26 -2 46" stroke="rgba(255,250,210,.5)" stroke-width="1" fill="none" stroke-linecap="round"/><circle cx="0" cy="47" r="3.3" fill="url(#hiB)"/></g></g><g class="drip drip-h" transform="translate(515 0)"><g class="d-inner"><path d="M -6 0 C -5 17 -3 37 -3 50 A 4 4 0 1 0 5 50 C 5 37 6 17 7 0 Z" fill="url(#goldB)"/><path d="M -2 7 Q -1 27 -3 47" stroke="rgba(255,250,210,.5)" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="0" cy="48" r="3.6" fill="url(#hiB)"/></g></g></svg></span></span>
+    </h1>
     <p class="lede reveal">We pull your copy from <strong>LinkedIn</strong>. You write nothing. <strong>2,000 EGP</strong> locks your spot — pay the rest only when you approve every pixel.</p>
     <div class="hero-actions reveal">
       <a href="#order" class="btn-liquid lg">Lock my spot — 2K EGP <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
