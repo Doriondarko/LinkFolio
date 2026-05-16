@@ -2,7 +2,7 @@ const NOTION_TOKEN     = process.env.NOTION_TOKEN;
 const NOTION_DB_ID     = process.env.NOTION_DATABASE_ID;
 const IMGBB_API_KEY    = process.env.IMGBB_API_KEY;
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -64,9 +64,9 @@ export default async function handler(req, res) {
     });
 
     if (!notionRes.ok) {
-      const err = await notionRes.text();
-      console.error('Notion error:', err);
-      return res.status(500).json({ error: 'Failed to log to Notion' });
+      const errText = await notionRes.text();
+      console.error('Notion error:', notionRes.status, errText);
+      return res.status(500).json({ error: 'Failed to log to Notion', detail: errText });
     }
 
     return res.status(200).json({ success: true, screenshotUrl });

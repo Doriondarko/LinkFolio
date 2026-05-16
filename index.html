@@ -485,21 +485,23 @@
       // Compress & encode screenshot
       const base64Screenshot = await compressImage(file);
 
-      // 1. Send to Vercel function → Notion + ImgBB
-      const apiRes = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name, email, whatsapp, goal, otherGoal,
-          styleRefs, brandColors, specificNeeds,
-          paymentScreenshot: base64Screenshot
-        })
-      });
-
-      const apiData = await apiRes.json();
-      if (!apiRes.ok) throw new Error(apiData.error || 'API error');
-
-      const screenshotUrl = apiData.screenshotUrl || '(not available)';
+      // 1. Send to Vercel function → Notion + ImgBB (non-blocking — emails send regardless)
+      let screenshotUrl = '(not available)';
+      try {
+        const apiRes  = await fetch('/api/contact', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({
+            name, email, whatsapp, goal, otherGoal,
+            styleRefs, brandColors, specificNeeds,
+            paymentScreenshot: base64Screenshot
+          })
+        });
+        const apiData = await apiRes.json();
+        if (apiData.screenshotUrl) screenshotUrl = apiData.screenshotUrl;
+      } catch (apiErr) {
+        console.warn('Notion logging failed (non-fatal):', apiErr);
+      }
 
       // 2. Send confirmation email to submitter
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CONFIRM, {
@@ -514,9 +516,9 @@
         client_email:    email,
         client_whatsapp: whatsapp,
         client_goal:     goal,
-        other_goal:      otherGoal  || '—',
-        style_refs:      styleRefs  || '—',
-        brand_colors:    brandColors || '—',
+        other_goal:      otherGoal     || '—',
+        style_refs:      styleRefs     || '—',
+        brand_colors:    brandColors   || '—',
         specific_needs:  specificNeeds || '—',
         screenshot_url:  screenshotUrl,
         submitted_at:    new Date().toLocaleString('en-GB'),
