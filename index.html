@@ -150,11 +150,50 @@
     font-size:clamp(48px,9vw,128px);
     line-height:.92;
     letter-spacing:-.055em;
-    margin-bottom:36px;
+    margin-bottom:0;
     max-width:15ch;
   }
   h1.hero-h1 .strike{position:relative;display:inline-block;color:var(--muted)}
   h1.hero-h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:6px;background:var(--ink);transform:rotate(-3deg)}
+
+  /* GOLD EPOXY RESIN DRIPS */
+  .title-drips{
+    display:block;
+    width:100%;
+    max-width:15ch;
+    height:64px;
+    margin-top:-6px;       /* slight overlap into title bottom */
+    margin-bottom:30px;    /* preserves rough gap to lede (was 36 on h1) */
+    pointer-events:none;
+    position:relative;
+    z-index:1;
+    overflow:visible;
+  }
+  .title-drips svg{display:block;width:100%;height:100%;overflow:visible}
+  .drip-inner{
+    transform-box:fill-box;
+    transform-origin:top center;
+    animation:dripFlow 6s cubic-bezier(.5,.05,.5,.95) infinite;
+    filter:drop-shadow(0 4px 6px rgba(122,84,16,.35));
+    will-change:transform,opacity;
+  }
+  @keyframes dripFlow{
+    0%, 100% { transform:scaleY(.18); opacity:0; }
+    8%       { opacity:1; }
+    55%      { transform:scaleY(1); }
+    72%      { transform:scaleY(1.08); }       /* slight stretch as if heavy */
+    85%      { transform:scaleY(.96); }         /* snap back */
+    96%      { transform:scaleY(.45); opacity:1; }
+  }
+  .drip-1 .drip-inner{ animation-delay: 0s;    animation-duration:6.2s; }
+  .drip-2 .drip-inner{ animation-delay:-1.5s;  animation-duration:7.4s; }
+  .drip-3 .drip-inner{ animation-delay:-2.9s;  animation-duration:5.6s; }
+  .drip-4 .drip-inner{ animation-delay:-4.1s;  animation-duration:6.8s; }
+  .drip-5 .drip-inner{ animation-delay:-5.3s;  animation-duration:6.0s; }
+  .drip-6 .drip-inner{ animation-delay:-3.4s;  animation-duration:7.0s; }
+  @media (prefers-reduced-motion: reduce){
+    .drip-inner{ animation:none; transform:scaleY(.7); }
+  }
 
   .lede{
     font-family:'Inter Tight',sans-serif;
@@ -683,6 +722,77 @@
       <span class="eyebrow warm">100+ sites delivered</span>
     </div>
     <h1 class="hero-h1" data-reveal-words>Look expensive. In 14 days. Or refund.</h1>
+    <div class="title-drips" aria-hidden="true">
+      <svg viewBox="0 0 600 64" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#fff6c2"/>
+            <stop offset="20%"  stop-color="#ffe079"/>
+            <stop offset="50%"  stop-color="#d4a02a"/>
+            <stop offset="82%"  stop-color="#7a5410"/>
+            <stop offset="100%" stop-color="#3b2700"/>
+          </linearGradient>
+          <radialGradient id="beadHi" cx="35%" cy="30%" r="65%">
+            <stop offset="0%"  stop-color="rgba(255,255,255,.9)"/>
+            <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Drip 1: short slender -->
+        <g class="drip drip-1" transform="translate(50 0)">
+          <g class="drip-inner">
+            <path d="M -7 0 C -6 14 -4 30 -4 42 A 4 4 0 1 0 4 42 C 4 30 6 14 7 0 Z" fill="url(#goldGrad)"/>
+            <path d="M -3 6 Q -2 24 -3 40" stroke="rgba(255,250,210,.55)" stroke-width="1" fill="none" stroke-linecap="round"/>
+            <circle cx="-1" cy="42" r="3.5" fill="url(#beadHi)"/>
+          </g>
+        </g>
+
+        <!-- Drip 2: long fat -->
+        <g class="drip drip-2" transform="translate(120 0)">
+          <g class="drip-inner">
+            <path d="M -9 0 C -8 18 -6 40 -6 56 A 6 6 0 1 0 6 56 C 6 40 8 18 9 0 Z" fill="url(#goldGrad)"/>
+            <path d="M -4 8 Q -3 30 -5 52" stroke="rgba(255,250,210,.6)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <circle cx="-2" cy="54" r="4.5" fill="url(#beadHi)"/>
+          </g>
+        </g>
+
+        <!-- Drip 3: medium -->
+        <g class="drip drip-3" transform="translate(200 0)">
+          <g class="drip-inner">
+            <path d="M -7 0 C -6 16 -4 36 -4 48 A 4.5 4.5 0 1 0 5 48 C 5 36 6 16 7 0 Z" fill="url(#goldGrad)"/>
+            <path d="M -3 7 Q -2 26 -3 45" stroke="rgba(255,250,210,.55)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <circle cx="-1" cy="47" r="3.8" fill="url(#beadHi)"/>
+          </g>
+        </g>
+
+        <!-- Drip 4: long slender -->
+        <g class="drip drip-4" transform="translate(280 0)">
+          <g class="drip-inner">
+            <path d="M -6 0 C -5 20 -3 42 -3 56 A 4 4 0 1 0 5 56 C 5 42 6 20 7 0 Z" fill="url(#goldGrad)"/>
+            <path d="M -2 9 Q -1 32 -3 54" stroke="rgba(255,250,210,.55)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <circle cx="0" cy="55" r="3.6" fill="url(#beadHi)"/>
+          </g>
+        </g>
+
+        <!-- Drip 5: short bulbous -->
+        <g class="drip drip-5" transform="translate(355 0)">
+          <g class="drip-inner">
+            <path d="M -8 0 C -7 12 -5 28 -5 40 A 5 5 0 1 0 5 40 C 5 28 7 12 8 0 Z" fill="url(#goldGrad)"/>
+            <path d="M -3 6 Q -2 22 -3 38" stroke="rgba(255,250,210,.55)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <circle cx="-1" cy="40" r="4" fill="url(#beadHi)"/>
+          </g>
+        </g>
+
+        <!-- Drip 6: thin tall accent -->
+        <g class="drip drip-6" transform="translate(420 0)">
+          <g class="drip-inner">
+            <path d="M -5 0 C -4 16 -2.5 36 -2.5 50 A 3.5 3.5 0 1 0 4.5 50 C 4.5 36 5 16 6 0 Z" fill="url(#goldGrad)"/>
+            <path d="M -2 7 Q -1 28 -2 48" stroke="rgba(255,250,210,.5)" stroke-width="1" fill="none" stroke-linecap="round"/>
+            <circle cx="0" cy="50" r="3.2" fill="url(#beadHi)"/>
+          </g>
+        </g>
+      </svg>
+    </div>
     <p class="lede reveal">We pull your copy from <strong>LinkedIn</strong>. You write nothing. <strong>2,000 EGP</strong> locks your spot — pay the rest only when you approve every pixel.</p>
     <div class="hero-actions reveal">
       <a href="#order" class="btn-liquid lg">Lock my spot — 2K EGP <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
