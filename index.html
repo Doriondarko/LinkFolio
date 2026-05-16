@@ -3,91 +3,182 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LinkFolio — Your Professional Website, Built in 14 Days</title>
-<meta name="description" content="LinkFolio builds professional websites in 14 days. First design directions in 48 hours. Final payment only on approval." />
+<title>LinkFolio — Look hireable in 14 days. Or refund.</title>
+<meta name="description" content="100+ professional websites delivered. We pull copy from your LinkedIn so you write nothing. Live in 14 days or your deposit back." />
 <link rel="icon" type="image/png" href="images/logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#fafaf7;
-    --bg-deep:#0a0a0a;
-    --ink:#0a0a0a;
-    --ink-soft:#1a1a18;
-    --muted:#6b6b66;
-    --line:#e5e3dc;
-    --line-dark:#2a2a28;
-    --card:#ffffff;
-    --accent:#0a0a0a;
-    --error:#c0392b;
+    --bg:#0a0a0a;
+    --bg-1:#111111;
+    --bg-2:#16161a;
+    --ink:#fafaf7;
+    --ink-soft:#d4d4cf;
+    --muted:#7a7a72;
+    --muted-dark:#5a5a52;
+    --line:#26262a;
+    --line-soft:#1d1d20;
+    --accent:#ffffff;
+    --warm:#f4e7d1;
+    --error:#e95c4b;
+    --success:#22c55e;
+    --live:#22c55e;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    font-family:'Inter',sans-serif;
+    font-family:'Inter Tight','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     background:var(--bg);
     color:var(--ink);
-    line-height:1.55;
+    line-height:1.5;
     -webkit-font-smoothing:antialiased;
-    font-feature-settings:"ss01","cv11";
     overflow-x:hidden;
+    letter-spacing:-.005em;
   }
-  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
-  .wrap-narrow{max-width:760px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  ::selection{background:#fff;color:#000}
 
-  /* DOTTED CANVAS BG */
-  #dotsBg{
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  .wrap-mid{max-width:980px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+
+  /* SHADER CANVAS BG */
+  #shaderBg{
     position:fixed;
-    top:0;left:0;
+    inset:0;
     width:100vw;height:100vh;
     z-index:0;
     pointer-events:none;
-    opacity:.55;
+  }
+  #shaderBg::after{
+    content:"";
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse at top,transparent 0%,rgba(10,10,10,.4) 70%,rgba(10,10,10,.85) 100%);
+    pointer-events:none;
   }
 
   /* NAV */
-  nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.82);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
-  .logo span{color:#aaa}
-  .logo-mark{width:30px;height:30px;border-radius:6px;background:#0a0a0a url('images/logo.png') center/cover no-repeat;flex-shrink:0}
-  .nav-links{display:flex;gap:28px;font-size:13.5px;color:var(--muted)}
-  .nav-links a{color:inherit;text-decoration:none;transition:color .2s}
-  .nav-links a:hover{color:var(--ink)}
-  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;text-decoration:none;font-size:13.5px;font-weight:500;transition:opacity .2s,transform .15s}
-  .cta-btn:hover{opacity:.9;transform:translateY(-1px)}
-  @media(max-width:720px){.nav-links{display:none}}
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.6);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line-soft)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.04em;text-decoration:none;color:var(--ink)}
+  .logo-mark{width:30px;height:30px;border-radius:6px;background:#000 url('images/logo.png') center/cover no-repeat;flex-shrink:0;border:1px solid var(--line)}
+  .logo span{color:var(--muted)}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .spots-pill{display:none;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--ink-soft);font-weight:500;background:rgba(255,255,255,.02)}
+  .spots-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px rgba(34,197,94,.18);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  @media(min-width:720px){.spots-pill{display:inline-flex}}
+
+  /* LIQUID METAL BUTTON */
+  .btn-liquid{
+    position:relative;
+    display:inline-flex;align-items:center;gap:10px;
+    padding:13px 22px;
+    background:linear-gradient(180deg,#fafaf7 0%,#c5c5bd 100%);
+    color:#0a0a0a;
+    font-family:'Inter Tight',sans-serif;
+    font-weight:700;font-size:13.5px;letter-spacing:.02em;text-transform:uppercase;
+    border:1px solid rgba(255,255,255,.4);
+    border-radius:999px;
+    cursor:pointer;
+    overflow:hidden;
+    text-decoration:none;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.85),
+      inset 0 -1px 0 rgba(0,0,0,.15),
+      0 8px 20px -6px rgba(0,0,0,.5),
+      0 0 0 0 rgba(255,255,255,0);
+    transition:transform .2s cubic-bezier(0.16,1,0.3,1),box-shadow .2s;
+  }
+  .btn-liquid:hover{
+    transform:translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.95),
+      inset 0 -1px 0 rgba(0,0,0,.15),
+      0 14px 28px -8px rgba(0,0,0,.6),
+      0 0 24px rgba(255,255,255,.08);
+  }
+  .btn-liquid::after{
+    content:"";
+    position:absolute;
+    top:0;left:-120%;
+    width:60%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+    transition:left .7s cubic-bezier(0.16,1,0.3,1);
+    pointer-events:none;
+  }
+  .btn-liquid:hover::after{left:160%}
+  .btn-liquid.lg{padding:17px 30px;font-size:14.5px}
+  .btn-liquid svg{transition:transform .2s}
+  .btn-liquid:hover svg{transform:translateX(3px)}
+
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:13px 22px;
+    border:1px solid var(--line);
+    color:var(--ink);
+    font-family:'Inter Tight',sans-serif;
+    font-weight:600;font-size:13.5px;letter-spacing:.02em;text-transform:uppercase;
+    border-radius:999px;
+    text-decoration:none;
+    background:transparent;
+    cursor:pointer;
+    transition:border-color .2s,background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--ink);background:rgba(255,255,255,.04)}
+  .btn-ghost.lg{padding:17px 30px;font-size:14.5px}
 
   /* HERO */
-  .hero{padding:120px 0 80px;position:relative;overflow:hidden}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(6px);margin-bottom:32px}
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  .hero{padding:120px 0 140px;position:relative}
+  .eyebrow-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.025);font-weight:500}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px rgba(34,197,94,.18);animation:pulse 2s infinite}
+  .eyebrow.warm{color:var(--warm);border-color:rgba(244,231,209,.25);background:rgba(244,231,209,.04)}
 
-  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(40px,7vw,84px);line-height:.98;letter-spacing:-.035em;margin-bottom:28px;max-width:14ch}
-  h1 em{font-style:italic;color:#555;font-weight:400}
-  h1 .underline{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:8px;text-decoration-color:#d8d4cb}
+  h1.hero-h1{
+    font-family:'Inter Tight',sans-serif;
+    font-weight:800;
+    font-size:clamp(48px,9vw,128px);
+    line-height:.92;
+    letter-spacing:-.055em;
+    margin-bottom:36px;
+    max-width:15ch;
+  }
+  h1.hero-h1 .strike{position:relative;display:inline-block;color:var(--muted)}
+  h1.hero-h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:6px;background:var(--ink);transform:rotate(-3deg)}
 
-  .lede{font-size:clamp(17px,1.6vw,20px);color:#3a3a36;max-width:54ch;margin-bottom:44px;line-height:1.55}
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:56px}
-  .cta-outline{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);color:var(--ink);padding:14px 22px;border-radius:999px;text-decoration:none;font-size:14.5px;font-weight:500;transition:all .15s;background:transparent}
-  .cta-outline:hover{background:var(--ink);color:#fff}
-  .cta-btn-lg{padding:14px 24px;font-size:14.5px}
+  .lede{
+    font-family:'Inter Tight',sans-serif;
+    font-size:clamp(17px,1.7vw,21px);
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin-bottom:44px;
+    line-height:1.5;
+    font-weight:400;
+  }
+  .lede strong{color:var(--ink);font-weight:600}
 
-  .hero-meta{display:flex;gap:36px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--line)}
-  .hero-meta-item small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .hero-meta-item strong{font-family:'Fraunces',serif;font-weight:500;font-size:19px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:64px}
 
-  /* SCROLL-TILT SHOWCASE */
-  .showcase{padding:60px 0 100px;perspective:1000px;position:relative}
-  .showcase-title{text-align:center;margin-bottom:48px}
-  .showcase-title .ey{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:block}
-  .showcase-title h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(26px,3.5vw,38px);line-height:1.1;letter-spacing:-.02em;max-width:24ch;margin:0 auto}
-  .showcase-title h2 em{font-style:italic;color:#666}
+  .hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+  .hero-meta-item{padding:24px 24px 0 0;border-right:1px solid var(--line)}
+  .hero-meta-item:last-child{border-right:none}
+  .hero-meta-item:not(:first-child){padding-left:24px}
+  .hero-meta-item small{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
+  .hero-meta-item strong{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.02em;color:var(--ink)}
+  @media(max-width:720px){
+    .hero{padding:80px 0 100px}
+    .hero-meta{grid-template-columns:1fr 1fr}
+    .hero-meta-item{padding:20px 16px 20px 0!important;border-bottom:1px solid var(--line)}
+    .hero-meta-item:nth-child(odd){border-right:1px solid var(--line)}
+    .hero-meta-item:nth-child(even){padding-left:16px!important;border-right:none}
+    .hero-meta-item:nth-last-child(-n+2){border-bottom:none}
+  }
 
+  /* SHOWCASE TILT */
+  .showcase{padding:40px 0 100px;perspective:1200px;position:relative}
   .tilt-frame{
-    max-width:980px;
+    max-width:1040px;
     margin:0 auto;
     transform-origin:50% 90%;
     transform:rotateX(35deg) scale(.92);
@@ -95,67 +186,62 @@
     will-change:transform;
   }
   .browser{
-    background:#0e0e0c;
-    border-radius:14px;
-    box-shadow:0 40px 80px -20px rgba(0,0,0,.35),0 20px 40px -20px rgba(0,0,0,.2);
+    background:#161614;
+    border-radius:16px;
+    box-shadow:
+      0 50px 100px -20px rgba(0,0,0,.7),
+      0 30px 60px -30px rgba(0,0,0,.5),
+      0 0 0 1px rgba(255,255,255,.05);
     overflow:hidden;
     border:1px solid #2a2a28;
   }
   .browser-bar{
     display:flex;align-items:center;gap:6px;
-    padding:12px 16px;
-    background:#161614;
+    padding:14px 18px;
+    background:#1a1a18;
     border-bottom:1px solid #2a2a28;
   }
-  .browser-dot{width:11px;height:11px;border-radius:50%}
-  .browser-dot.r{background:#ff5f57}
-  .browser-dot.y{background:#febc2e}
-  .browser-dot.g{background:#28c840}
-  .browser-url{flex:1;margin:0 16px;background:#0a0a0a;border:1px solid #2a2a28;border-radius:8px;padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#888;text-align:center}
+  .browser-dot{width:11px;height:11px;border-radius:50%;background:#3a3a36}
+  .browser-url{flex:1;margin:0 16px;background:#0a0a0a;border:1px solid #2a2a28;border-radius:8px;padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#888;text-align:center}
   .browser-content{
     aspect-ratio:16/9;
-    background:linear-gradient(135deg,#0a0a0a 0%,#1a1a18 50%,#0a0a0a 100%);
+    background:#0a0a0a;
     padding:48px 56px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    color:#fff;
-    position:relative;
-    overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
+    color:#fff;position:relative;overflow:hidden;
   }
   .browser-content::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.04) 0%,transparent 50%);
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 30% 50%,rgba(255,255,255,.04) 0%,transparent 50%),
+      linear-gradient(135deg,#0a0a0a 0%,#1a1a18 100%);
   }
   .bc-top{display:flex;justify-content:space-between;align-items:flex-start;font-size:13px;position:relative;z-index:1}
-  .bc-logo{font-family:'Fraunces',serif;font-weight:600;font-size:16px;letter-spacing:-.01em}
-  .bc-nav{display:flex;gap:20px;color:#888;font-size:12px}
-  .bc-headline{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,4vw,52px);line-height:1;letter-spacing:-.02em;max-width:12ch;position:relative;z-index:1}
-  .bc-headline em{font-style:italic;color:#999}
-  .bc-bottom{display:flex;justify-content:space-between;align-items:flex-end;font-size:11px;color:#666;position:relative;z-index:1}
-  .bc-stats{display:flex;gap:32px}
-  .bc-stats div strong{display:block;font-family:'Fraunces',serif;color:#fff;font-size:22px;font-weight:500;margin-bottom:4px}
+  .bc-logo{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.04em}
+  .bc-nav{display:flex;gap:24px;color:#888;font-size:12px;letter-spacing:.04em}
+  .bc-headline{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(36px,5.5vw,68px);line-height:.95;letter-spacing:-.045em;max-width:14ch;position:relative;z-index:1}
+  .bc-bottom{display:flex;justify-content:space-between;align-items:flex-end;font-size:11px;color:#888;position:relative;z-index:1;letter-spacing:.04em}
+  .bc-stats{display:flex;gap:36px}
+  .bc-stats div strong{display:block;font-family:'Inter Tight',sans-serif;color:#fff;font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-.02em}
   @media(max-width:680px){
-    .browser-content{padding:24px 28px}
+    .browser-content{padding:24px 28px;aspect-ratio:4/5}
     .bc-nav{display:none}
-    .bc-stats{gap:16px}
+    .bc-stats{gap:18px}
   }
 
   /* PROCESS */
-  .process{padding:100px 0;border-top:1px solid var(--line);background:#fff;position:relative;z-index:1}
-  .process-head{margin-bottom:56px;max-width:680px}
-  .process-head .ey{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:block}
-  .process-head h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.02em;margin-bottom:14px}
-  .process-head p{font-size:16px;color:#3a3a36;max-width:56ch}
+  .process{padding:120px 0;border-top:1px solid var(--line);position:relative;z-index:1;background:rgba(10,10,10,.6);backdrop-filter:blur(8px)}
+  .process-head{margin-bottom:64px;max-width:680px}
+  .ey{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block;font-weight:500}
+  h2.section-h{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(34px,5vw,56px);line-height:1;letter-spacing:-.045em;margin-bottom:18px;color:var(--ink)}
+  .section-sub{font-size:17px;color:var(--ink-soft);max-width:54ch;line-height:1.5}
 
   .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
-  .process-step{padding:32px 24px 32px 0;border-right:1px solid var(--line)}
+  .process-step{padding:32px 24px 32px 0;border-right:1px solid var(--line);position:relative}
   .process-step:last-child{border-right:none;padding-right:0}
-  .process-step .ps-num{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);letter-spacing:.12em;margin-bottom:18px;display:block}
-  .process-step h4{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-.01em;margin-bottom:8px;line-height:1.15}
-  .process-step p{font-size:13.5px;color:var(--muted);line-height:1.55}
+  .process-step .ps-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.14em;margin-bottom:22px;display:block;text-transform:uppercase}
+  .process-step h4{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.025em;margin-bottom:10px;line-height:1.1;color:var(--ink)}
+  .process-step p{font-size:14px;color:var(--muted);line-height:1.55}
   .process-step:not(:first-child){padding-left:24px}
   @media(max-width:820px){
     .process-grid{grid-template-columns:1fr 1fr}
@@ -171,15 +257,13 @@
   }
 
   /* FORM SECTION */
-  .form-section{padding:100px 0 80px;position:relative;z-index:1}
-  .form-head{margin-bottom:40px}
-  .section-eyebrow{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:block}
-  h2.form-h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.02em;margin-bottom:14px}
-  h2.form-h2 em{font-style:italic;color:#666}
-  .form-sub{font-size:16px;color:#3a3a36;max-width:58ch}
+  .form-section{padding:120px 0 100px;position:relative;z-index:1}
+  .form-head{margin-bottom:56px}
+  h2.form-h{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(34px,5vw,56px);line-height:1;letter-spacing:-.045em;margin-bottom:18px;color:var(--ink)}
+  .form-sub{font-size:17px;color:var(--ink-soft);max-width:56ch;line-height:1.5}
 
   /* DIRECTION PICKER */
-  .picker-label{font-family:'Fraunces',serif;font-size:22px;font-weight:500;margin-bottom:8px;letter-spacing:-.01em}
+  .picker-label{font-family:'Inter Tight',sans-serif;font-size:22px;font-weight:700;margin-bottom:8px;letter-spacing:-.025em;color:var(--ink)}
   .picker-helper{font-size:14px;color:var(--muted);margin-bottom:24px}
 
   .direction-picker{
@@ -194,58 +278,99 @@
   .direction-card{
     position:relative;
     cursor:pointer;
-    border-radius:10px;
+    border-radius:12px;
     overflow:hidden;
-    border:2px solid var(--line);
-    background:#fff;
-    transition:border-color .2s,transform .2s,box-shadow .2s;
+    background:var(--bg-2);
+    border:1px solid var(--line);
     display:block;
+    transition:transform .2s cubic-bezier(0.16,1,0.3,1),border-color .2s;
+    isolation:isolate;
   }
-  .direction-card:hover{border-color:#b8b8b0;transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(0,0,0,.15)}
-  .direction-card.selected{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 12px 28px -10px rgba(0,0,0,.25)}
+  /* SPOTLIGHT BORDER EFFECT */
+  .direction-card::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    border-radius:13px;
+    padding:1px;
+    background:radial-gradient(
+      280px circle at var(--mx,50%) var(--my,50%),
+      rgba(255,255,255,.55),
+      rgba(255,255,255,0) 50%
+    );
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .25s;
+    z-index:3;
+  }
+  .direction-card:hover::before{opacity:1}
+  /* SPOTLIGHT GLOW INSIDE */
+  .direction-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:12px;
+    background:radial-gradient(
+      400px circle at var(--mx,50%) var(--my,50%),
+      rgba(255,255,255,.08),
+      transparent 40%
+    );
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .25s;
+    z-index:2;
+  }
+  .direction-card:hover::after{opacity:1}
+
+  .direction-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.18)}
+  .direction-card.selected{border-color:var(--ink);transform:translateY(-3px);box-shadow:0 0 0 1px var(--ink),0 14px 32px -10px rgba(0,0,0,.6),0 0 40px rgba(255,255,255,.1)}
   .direction-card input[type="radio"]{position:absolute;opacity:0;pointer-events:none}
 
   .direction-thumb{
     width:100%;
-    aspect-ratio:4/5;
+    aspect-ratio:4/3;
     background-size:cover;
     background-position:center top;
     background-color:#0a0a0a;
     position:relative;
     overflow:hidden;
+    border-bottom:1px solid var(--line);
   }
   .direction-num{
     position:absolute;
     top:10px;left:10px;
-    background:rgba(10,10,10,.92);
+    background:rgba(10,10,10,.85);
     color:#fff;
-    padding:4px 9px;
+    padding:5px 10px;
     border-radius:6px;
-    font-family:'Fraunces',serif;
-    font-weight:600;
-    font-size:13px;
-    letter-spacing:.02em;
-    z-index:2;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:500;
+    font-size:11px;
+    letter-spacing:.06em;
+    z-index:4;
+    border:1px solid rgba(255,255,255,.15);
   }
-  .direction-card.selected .direction-num{background:#fff;color:#0a0a0a}
+  .direction-card.selected .direction-num{background:#fff;color:#0a0a0a;border-color:transparent}
   .direction-check{
     position:absolute;top:10px;right:10px;
-    width:24px;height:24px;border-radius:50%;
+    width:26px;height:26px;border-radius:50%;
     background:#fff;color:#0a0a0a;
     display:flex;align-items:center;justify-content:center;
-    font-size:14px;font-weight:600;
-    opacity:0;transform:scale(.6);
+    font-size:14px;font-weight:700;
+    opacity:0;transform:scale(.5);
     transition:opacity .2s,transform .2s;
-    z-index:2;
-    border:2px solid var(--ink);
+    z-index:4;
   }
   .direction-card.selected .direction-check{opacity:1;transform:scale(1)}
 
-  .direction-meta{padding:12px 14px;background:#fff}
-  .direction-meta strong{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:14px;letter-spacing:-.005em;margin-bottom:2px}
+  .direction-meta{padding:12px 14px;background:var(--bg-2);position:relative;z-index:1}
+  .direction-meta strong{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.015em;margin-bottom:2px;color:var(--ink)}
   .direction-meta span{font-size:11.5px;color:var(--muted);letter-spacing:.01em}
 
-  /* Fallback bg vibes for cards (when image isn't loaded yet) */
+  /* Fallback bg vibes for cards */
   .direction-thumb-1{background-image:linear-gradient(135deg,#1a2333 0%,#3d3522 100%)}
   .direction-thumb-2{background-image:linear-gradient(135deg,#f4f1ff 0%,#d9c8ff 100%)}
   .direction-thumb-3{background-image:linear-gradient(135deg,#d4f0a3 0%,#a3e0b9 100%)}
@@ -254,11 +379,11 @@
 
   /* FORM CARD */
   .form-card{
-    background:#fff;
+    background:var(--bg-1);
     border:1px solid var(--line);
-    border-radius:12px;
+    border-radius:16px;
     padding:48px;
-    box-shadow:0 1px 0 rgba(0,0,0,.02),0 24px 48px -24px rgba(0,0,0,.06);
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.5);
   }
   @media(max-width:680px){.form-card{padding:28px 20px}}
 
@@ -266,161 +391,227 @@
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
   @media(max-width:560px){.form-row{grid-template-columns:1fr}}
 
-  label{display:block;font-size:13px;font-weight:500;letter-spacing:.01em;color:var(--ink);margin-bottom:8px}
-  label .opt{color:var(--muted);font-weight:400;margin-left:4px}
+  label{display:block;font-size:12.5px;font-weight:500;letter-spacing:.02em;color:var(--ink-soft);margin-bottom:9px;text-transform:uppercase}
+  label .opt{color:var(--muted);font-weight:400;margin-left:4px;text-transform:none;letter-spacing:0}
 
   input[type="text"],input[type="email"],input[type="tel"],textarea{
-    width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:6px;
-    font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink);background:#fff;
-    transition:border-color .15s,box-shadow .15s;outline:none;-webkit-appearance:none;
+    width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:8px;
+    font-family:'Inter Tight',sans-serif;font-size:15px;color:var(--ink);background:var(--bg-2);
+    transition:border-color .15s,box-shadow .15s,background .15s;outline:none;-webkit-appearance:none;
+    font-weight:500;
   }
-  input:focus,textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(10,10,10,.06)}
-  input::placeholder,textarea::placeholder{color:#b0b0a8}
+  input:focus,textarea:focus{border-color:var(--ink);background:#1a1a1d;box-shadow:0 0 0 3px rgba(255,255,255,.08)}
+  input::placeholder,textarea::placeholder{color:var(--muted-dark)}
   textarea{resize:vertical;min-height:100px;line-height:1.5}
 
-  .radio-heading{font-size:13px;font-weight:500;margin-bottom:14px}
+  .radio-heading{font-family:'Inter Tight',sans-serif;font-size:17px;font-weight:600;margin-bottom:14px;color:var(--ink);letter-spacing:-.015em}
   .radio-options{display:grid;gap:10px}
   .radio-label{
-    display:flex;align-items:center;gap:12px;padding:13px 16px;
-    border:1px solid var(--line);border-radius:6px;cursor:pointer;font-size:14.5px;
-    transition:border-color .15s,background .15s;user-select:none;
+    display:flex;align-items:center;gap:12px;padding:14px 16px;
+    border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14.5px;
+    transition:border-color .15s,background .15s;user-select:none;background:var(--bg-2);
+    color:var(--ink-soft);font-weight:500;
   }
-  .radio-label:hover{border-color:#b8b8b0;background:#fafaf7}
-  .radio-label input[type="radio"]{width:16px;height:16px;accent-color:var(--ink);flex-shrink:0;cursor:pointer}
-  .radio-label.selected{border-color:var(--ink);background:#f5f5f0}
+  .radio-label:hover{border-color:rgba(255,255,255,.2);background:#1a1a1d}
+  .radio-label input[type="radio"]{width:16px;height:16px;accent-color:#fff;flex-shrink:0;cursor:pointer}
+  .radio-label.selected{border-color:var(--ink);background:#1d1d1f;color:var(--ink)}
   .other-expand{margin-top:10px;display:none}
   .other-expand.visible{display:block}
 
   .linkedin-note{
-    font-size:13px;color:#3a3a36;
-    padding:14px 16px;background:#f5f5f2;border:1px solid var(--line);
-    border-radius:6px;margin-top:-16px;margin-bottom:28px;line-height:1.5;
+    font-size:13.5px;color:var(--ink-soft);
+    padding:16px 18px;background:rgba(255,255,255,.02);border:1px solid var(--line);
+    border-left:3px solid var(--warm);
+    border-radius:8px;margin-top:-12px;margin-bottom:28px;line-height:1.55;
   }
-  .linkedin-note strong{color:var(--ink)}
+  .linkedin-note strong{color:var(--ink);font-weight:600}
 
-  .payment-divider{border-top:1px solid var(--line);margin:36px 0 32px}
-  .payment-heading{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:6px;letter-spacing:-.01em}
-  .payment-details{font-size:14px;color:#3a3a36;margin-bottom:24px}
-  .payment-details strong{color:var(--ink)}
+  .payment-divider{border-top:1px solid var(--line);margin:40px 0 32px}
+  .payment-heading{
+    font-family:'Inter Tight',sans-serif;
+    font-size:34px;font-weight:800;margin-bottom:6px;letter-spacing:-.04em;
+    line-height:1;color:var(--ink);
+  }
+  .payment-amount{font-size:14px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+  .payment-row{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;margin-bottom:24px}
+  .payment-row-label{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .payment-row-value{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:var(--ink);letter-spacing:.04em}
+  .payment-method{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);font-weight:600;margin-left:auto;padding:4px 10px;background:rgba(255,255,255,.06);border-radius:999px;border:1px solid var(--line)}
 
   .upload-zone{
-    border:2px dashed var(--line);border-radius:8px;padding:32px;text-align:center;
-    cursor:pointer;transition:border-color .2s,background .2s;position:relative;background:#fafaf7;
+    border:2px dashed var(--line);border-radius:10px;padding:32px;text-align:center;
+    cursor:pointer;transition:border-color .2s,background .2s;position:relative;background:var(--bg-2);
   }
-  .upload-zone:hover{border-color:#b8b8b0;background:#f5f5f0}
-  .upload-zone.has-file{border-color:var(--ink);background:#f5f5f0;border-style:solid}
+  .upload-zone:hover{border-color:rgba(255,255,255,.3);background:#1a1a1d}
+  .upload-zone.has-file{border-color:var(--ink);background:#1a1a1d;border-style:solid}
   .upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
   .upload-icon{font-size:28px;display:block;margin-bottom:10px;color:var(--muted)}
-  .upload-text{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px}
+  .upload-text{font-family:'Inter Tight',sans-serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px}
   .upload-hint{font-size:12px;color:var(--muted)}
   .upload-preview{max-width:180px;max-height:180px;object-fit:contain;border-radius:6px;margin-top:14px;display:none;border:1px solid var(--line)}
   .upload-filename{font-size:12.5px;color:var(--muted);margin-top:8px;display:none}
 
-  .microcopy{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.55}
+  .microcopy{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.55;text-align:center}
+  .microcopy strong{color:var(--ink-soft);font-weight:500}
 
+  /* SUBMIT - LIQUID METAL FULL WIDTH */
   .submit-btn{
-    width:100%;padding:16px;background:var(--ink);color:#fff;
-    font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-    border:none;border-radius:6px;cursor:pointer;margin-top:32px;
-    transition:opacity .2s,transform .15s;letter-spacing:.01em;
+    width:100%;
+    position:relative;
+    padding:18px 24px;
+    background:linear-gradient(180deg,#fafaf7 0%,#c5c5bd 100%);
+    color:#0a0a0a;
+    font-family:'Inter Tight',sans-serif;
+    font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    border:1px solid rgba(255,255,255,.4);
+    border-radius:10px;
+    cursor:pointer;margin-top:32px;
+    overflow:hidden;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.85),
+      inset 0 -1px 0 rgba(0,0,0,.15),
+      0 8px 20px -6px rgba(0,0,0,.5);
+    transition:transform .2s,box-shadow .2s;
   }
-  .submit-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
-  .submit-btn:disabled{opacity:.5;cursor:not-allowed}
+  .submit-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(0,0,0,.15),0 14px 28px -8px rgba(0,0,0,.6),0 0 24px rgba(255,255,255,.08)}
+  .submit-btn::after{
+    content:"";
+    position:absolute;
+    top:0;left:-120%;
+    width:60%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+    transition:left .7s cubic-bezier(0.16,1,0.3,1);
+    pointer-events:none;
+  }
+  .submit-btn:hover:not(:disabled)::after{left:160%}
+  .submit-btn:disabled{opacity:.55;cursor:not-allowed}
   .submit-btn .btn-loading{display:none}
 
-  .form-error{display:none;background:#fdf0ef;border:1px solid #e8b4b0;color:var(--error);padding:12px 16px;border-radius:6px;font-size:13.5px;margin-top:16px}
+  .form-error{display:none;background:rgba(233,92,75,.08);border:1px solid rgba(233,92,75,.35);color:#ff7a6a;padding:12px 16px;border-radius:8px;font-size:13.5px;margin-top:16px}
   .form-error.visible{display:block}
 
   .success-state{display:none;text-align:center;padding:64px 28px}
   .success-state.visible{display:block}
-  .success-check{font-size:56px;margin-bottom:20px;font-family:'Fraunces',serif;color:#22c55e}
-  .success-state h3{font-family:'Fraunces',serif;font-size:32px;font-weight:500;margin-bottom:12px;letter-spacing:-.015em}
-  .success-state p{font-size:16px;color:#3a3a36;max-width:48ch;margin:0 auto 24px}
+  .success-check{font-family:'Inter Tight',sans-serif;font-size:64px;font-weight:300;margin-bottom:20px;color:var(--success);line-height:1}
+  .success-state h3{font-family:'Inter Tight',sans-serif;font-size:38px;font-weight:800;margin-bottom:14px;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+  .success-state p{font-size:16px;color:var(--ink-soft);max-width:48ch;margin:0 auto 16px;line-height:1.5}
   .success-meta{font-size:13px;color:var(--muted)}
 
   .field-error{border-color:var(--error) !important}
-  .field-error-msg{font-size:12px;color:var(--error);margin-top:5px;display:none}
+  .field-error-msg{font-size:12.5px;color:#ff7a6a;margin-top:6px;display:none}
   .field-error-msg.visible{display:block}
 
-  /* REVEAL ANIMATIONS */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease-out,transform .8s ease-out}
+  /* REVEAL ANIM */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(0.16,1,0.3,1),transform .9s cubic-bezier(0.16,1,0.3,1)}
   .reveal.in{opacity:1;transform:translateY(0)}
 
+  /* WORD-REVEAL ANIMATION SUPPORT */
+  .rw{display:inline-block;opacity:0;transform:translateY(.5em);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1)}
+  .rw.show{opacity:1;transform:translateY(0)}
+
+  /* SOCIAL PROOF STRIP */
+  .proof-strip{
+    padding:32px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:rgba(10,10,10,.6);
+    backdrop-filter:blur(8px);
+    position:relative;z-index:1;
+  }
+  .proof-strip .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .proof-claim{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .proof-num{font-family:'Inter Tight',sans-serif;font-size:48px;font-weight:800;letter-spacing:-.045em;line-height:1;color:var(--ink)}
+  .proof-text{font-size:13.5px;color:var(--ink-soft);max-width:42ch;line-height:1.45}
+  .proof-text strong{color:var(--ink);font-weight:600}
+
   /* FOOTER */
-  footer{padding:48px 0;border-top:1px solid var(--line);background:var(--bg);position:relative;z-index:1}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted)}
-  footer a{color:var(--muted);text-decoration:none}
+  footer{padding:56px 0;border-top:1px solid var(--line);background:var(--bg);position:relative;z-index:1}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
+  footer a{color:var(--ink-soft);text-decoration:none}
   footer a:hover{color:var(--ink)}
+
+  @media(prefers-reduced-motion:reduce){
+    .reveal,.rw{transition:none!important;opacity:1!important;transform:none!important}
+    .tilt-frame{transform:none!important}
+  }
 </style>
 </head>
 <body>
 
-<canvas id="dotsBg"></canvas>
+<canvas id="shaderBg"></canvas>
 
 <nav>
   <div class="wrap">
     <a href="#" class="logo"><span class="logo-mark" aria-hidden="true"></span>LinkFolio<span>.</span></a>
-    <div class="nav-links">
-      <a href="#process">Process</a>
-      <a href="#directions">Directions</a>
-      <a href="#order">Start</a>
+    <div class="nav-right">
+      <span class="spots-pill"><span class="dot"></span>2 spots left this month</span>
+      <a href="#order" class="btn-liquid">Lock my spot <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
-    <a href="#order" class="cta-btn">Start your site →</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span> Now accepting 2 new clients this month</span>
-    <h1>Your professional site, <em>built and live</em> in <span class="underline">14 days.</span></h1>
-    <p class="lede">First design directions in 48 hours. Full build with unlimited revisions inside a 14-day window. You pay the remaining 8,000 EGP only when you approve every pixel — not before.</p>
-    <div class="hero-actions">
-      <a href="#order" class="cta-btn cta-btn-lg">Start your order →</a>
-      <a href="#directions" class="cta-outline">See design directions</a>
+    <div class="eyebrow-row reveal">
+      <span class="eyebrow"><span class="dot"></span>Only 2 spots left in May</span>
+      <span class="eyebrow warm">100+ sites delivered</span>
     </div>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><small>Deposit to start</small><strong>2,000 EGP</strong></div>
+    <h1 class="hero-h1" data-reveal-words>Look hireable. In 14 days. Or refund.</h1>
+    <p class="lede reveal">We pull your copy from <strong>LinkedIn</strong>. You write nothing. <strong>2,000 EGP</strong> locks your spot — pay the rest only when you approve every pixel.</p>
+    <div class="hero-actions reveal">
+      <a href="#order" class="btn-liquid lg">Lock my spot — 2K EGP <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <a href="#directions" class="btn-ghost lg">See directions</a>
+    </div>
+    <div class="hero-meta reveal">
+      <div class="hero-meta-item"><small>Deposit</small><strong>2,000 EGP</strong></div>
       <div class="hero-meta-item"><small>First designs</small><strong>48 hours</strong></div>
-      <div class="hero-meta-item"><small>Full build</small><strong>14 days</strong></div>
-      <div class="hero-meta-item"><small>Final payment</small><strong>On your approval</strong></div>
+      <div class="hero-meta-item"><small>Live by day</small><strong>14</strong></div>
+      <div class="hero-meta-item"><small>Sites built</small><strong>100+</strong></div>
     </div>
   </div>
 </header>
 
-<!-- SCROLL-TILT SHOWCASE -->
+<!-- SHOWCASE -->
 <section class="showcase">
   <div class="wrap">
-    <div class="showcase-title reveal">
-      <span class="ey">A preview</span>
-      <h2>Built around the work that <em>actually</em> gets you hired.</h2>
-    </div>
     <div class="tilt-frame" id="tiltFrame">
       <div class="browser">
         <div class="browser-bar">
-          <span class="browser-dot r"></span>
-          <span class="browser-dot y"></span>
-          <span class="browser-dot g"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
           <span class="browser-url">yourname.com</span>
           <span style="width:54px"></span>
         </div>
         <div class="browser-content">
           <div class="bc-top">
             <div class="bc-logo">Yourname<span style="color:#888">.</span></div>
-            <div class="bc-nav"><span>Work</span><span>About</span><span>Contact</span></div>
+            <div class="bc-nav"><span>WORK</span><span>ABOUT</span><span>CONTACT</span></div>
           </div>
-          <h3 class="bc-headline">The site that makes you look like <em>you charge more.</em></h3>
+          <h3 class="bc-headline">The site that makes you look like you charge more.</h3>
           <div class="bc-bottom">
             <div class="bc-stats">
-              <div><strong>48h</strong>Design directions</div>
-              <div><strong>14d</strong>Full build</div>
-              <div><strong>∞</strong>Revisions</div>
+              <div><strong>48H</strong>DESIGNS</div>
+              <div><strong>14D</strong>LIVE</div>
+              <div><strong>∞</strong>REVISIONS</div>
             </div>
-            <div>↓ scroll</div>
+            <div>↓ SCROLL</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<section class="proof-strip">
+  <div class="wrap">
+    <div class="proof-claim">
+      <span class="proof-num">100+</span>
+      <p class="proof-text"><strong>Websites delivered.</strong> Average build time: 11 days. Refund rate: 0%.</p>
+    </div>
+    <a href="#order" class="btn-ghost">Start your site →</a>
   </div>
 </section>
 
@@ -429,29 +620,29 @@
   <div class="wrap">
     <div class="process-head reveal">
       <span class="ey">How it works</span>
-      <h2>Two weeks from order to launch.</h2>
-      <p>No back-and-forth. No surprise costs. A defined window, a defined output, a defined moment when you decide whether to pay the rest.</p>
+      <h2 class="section-h">2 weeks. Order to live.</h2>
+      <p class="section-sub">A defined window. A defined output. A defined moment when you decide whether to pay the rest.</p>
     </div>
     <div class="process-grid">
       <div class="process-step reveal">
-        <span class="ps-num">DAY 01 — 02</span>
-        <h4>Two design directions, sent to your inbox.</h4>
-        <p>Based on your form answers. You pick one.</p>
+        <span class="ps-num">Day 01–02</span>
+        <h4>Two designs in your inbox.</h4>
+        <p>You pick one.</p>
       </div>
       <div class="process-step reveal">
-        <span class="ps-num">DAY 03 — 10</span>
-        <h4>Full site, built from your chosen direction.</h4>
-        <p>Pulled from your LinkedIn. Polished. Mobile-ready.</p>
+        <span class="ps-num">Day 03–10</span>
+        <h4>Full build, polished, mobile-ready.</h4>
+        <p>Pulled from your LinkedIn.</p>
       </div>
       <div class="process-step reveal">
-        <span class="ps-num">DAY 11 — 14</span>
-        <h4>Unlimited revisions. Anything you want.</h4>
-        <p>This is your window to be picky. Use it.</p>
+        <span class="ps-num">Day 11–14</span>
+        <h4>Unlimited revisions.</h4>
+        <p>Be picky. Use all of it.</p>
       </div>
       <div class="process-step reveal">
-        <span class="ps-num">APPROVAL</span>
-        <h4>You pay 8,000 EGP. I buy your domain. Live.</h4>
-        <p>1,000 EGP/month after for hosting, domain, updates.</p>
+        <span class="ps-num">Approval</span>
+        <h4>Pay 8K. Goes live same day.</h4>
+        <p>Domain bought. Site shipped.</p>
       </div>
     </div>
   </div>
@@ -459,32 +650,31 @@
 
 <!-- FORM -->
 <section id="order" class="form-section">
-  <div class="wrap-narrow">
+  <div class="wrap-mid">
     <div class="form-head reveal">
-      <span class="section-eyebrow">The Order Form</span>
-      <h2 class="form-h2">Let's <em>build your site.</em></h2>
-      <p class="form-sub">Three minutes to fill in. Two design directions hit your inbox within 48 hours of submission.</p>
+      <span class="ey">The order form</span>
+      <h2 class="form-h">Pick a direction. Lock your spot.</h2>
+      <p class="form-sub">3 minutes. First designs in 48 hours. <strong style="color:var(--ink)">Only 2 spots open</strong> this month.</p>
     </div>
 
     <div class="form-card">
 
-      <!-- SUCCESS STATE -->
       <div class="success-state" id="successState">
         <div class="success-check">✓</div>
         <h3>You're in.</h3>
-        <p>I've sent a confirmation to your inbox with the full timeline. First design directions land in 48 hours.</p>
-        <p class="success-meta">If you don't see the email, check spam.</p>
+        <p>Confirmation sent to your inbox. First designs land in 48 hours.</p>
+        <p class="success-meta">Check spam if you don't see it.</p>
       </div>
 
       <form id="orderForm" novalidate>
 
         <!-- DIRECTION PICKER -->
-        <div id="directions" class="form-group" style="margin-bottom:36px">
-          <div class="picker-label">Which design direction speaks to you?</div>
-          <p class="picker-helper">Pick the one closest to the vibe you want. Don't overthink it — we'll tailor it to you.</p>
+        <div id="directions" class="form-group" style="margin-bottom:40px">
+          <div class="picker-label">Which direction?</div>
+          <p class="picker-helper">Pick the closest vibe. We tailor it to you.</p>
 
           <div class="direction-picker" role="radiogroup" aria-label="Design direction">
-            <label class="direction-card" data-num="01">
+            <label class="direction-card spotlight" data-num="01">
               <input type="radio" name="direction" value="01 — Dark + Editorial (Carlos Mendoza style)" required>
               <div class="direction-thumb direction-thumb-1" style="background-image:url('images/1.jpg')">
                 <span class="direction-num">01</span>
@@ -496,7 +686,7 @@
               </div>
             </label>
 
-            <label class="direction-card" data-num="02">
+            <label class="direction-card spotlight" data-num="02">
               <input type="radio" name="direction" value="02 — Bold Type + Personal (Luca style)">
               <div class="direction-thumb direction-thumb-2" style="background-image:url('images/2.jpg')">
                 <span class="direction-num">02</span>
@@ -508,7 +698,7 @@
               </div>
             </label>
 
-            <label class="direction-card" data-num="03">
+            <label class="direction-card spotlight" data-num="03">
               <input type="radio" name="direction" value="03 — Vibrant Gradient + Serif (Elian Ross style)">
               <div class="direction-thumb direction-thumb-3" style="background-image:url('images/3.jpg')">
                 <span class="direction-num">03</span>
@@ -520,7 +710,7 @@
               </div>
             </label>
 
-            <label class="direction-card" data-num="04">
+            <label class="direction-card spotlight" data-num="04">
               <input type="radio" name="direction" value="04 — Mono + Refined (D.Nova style)">
               <div class="direction-thumb direction-thumb-4" style="background-image:url('images/4.jpg')">
                 <span class="direction-num">04</span>
@@ -528,11 +718,11 @@
               </div>
               <div class="direction-meta">
                 <strong>Mono + Refined</strong>
-                <span>Minimal, premium feel</span>
+                <span>Minimal, premium</span>
               </div>
             </label>
 
-            <label class="direction-card" data-num="05">
+            <label class="direction-card spotlight" data-num="05">
               <input type="radio" name="direction" value="05 — Cinematic + Authority (BrandElevate style)">
               <div class="direction-thumb direction-thumb-5" style="background-image:url('images/5.jpg')">
                 <span class="direction-num">05</span>
@@ -540,53 +730,50 @@
               </div>
               <div class="direction-meta">
                 <strong>Cinematic</strong>
-                <span>Bold statement + photo</span>
+                <span>Bold + photo-led</span>
               </div>
             </label>
           </div>
-          <div class="field-error-msg" id="directionErr">Please pick a design direction.</div>
+          <div class="field-error-msg" id="directionErr">Pick a direction.</div>
         </div>
 
-        <!-- NAME -->
         <div class="form-group">
           <label for="name">Full name</label>
           <input type="text" id="name" name="name" placeholder="Abdulrahman Ibrahim" autocomplete="name" required />
-          <div class="field-error-msg" id="nameErr">Please enter your name.</div>
+          <div class="field-error-msg" id="nameErr">Enter your name.</div>
         </div>
 
-        <!-- EMAIL + WHATSAPP -->
         <div class="form-row">
           <div>
-            <label for="email">Email address</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
-            <div class="field-error-msg" id="emailErr">Please enter a valid email.</div>
+            <div class="field-error-msg" id="emailErr">Enter a valid email.</div>
           </div>
           <div>
-            <label for="whatsapp">WhatsApp number</label>
+            <label for="whatsapp">WhatsApp</label>
             <input type="tel" id="whatsapp" name="whatsapp" placeholder="01xxxxxxxxx" autocomplete="tel" required />
-            <div class="field-error-msg" id="whatsappErr">Please enter your WhatsApp number.</div>
+            <div class="field-error-msg" id="whatsappErr">Enter your WhatsApp.</div>
           </div>
         </div>
 
         <div class="linkedin-note">
-          <strong>I'll pull your copy from LinkedIn.</strong> Your bio, experience, and projects — so you don't have to write a single word of website copy. Make sure your LinkedIn is up to date.
+          <strong>Make sure your LinkedIn is updated.</strong> We pull your bio, work, and projects from there. You write nothing.
         </div>
 
-        <!-- GOAL RADIO -->
         <div class="form-group">
-          <div class="radio-heading">What's the #1 thing this site should do for you?</div>
+          <div class="radio-heading">What's the #1 job?</div>
           <div class="radio-options">
             <label class="radio-label">
-              <input type="radio" name="goal" value="Make me look credible to clients" required />
-              Make me look credible to clients
+              <input type="radio" name="goal" value="Look credible to clients" required />
+              Look credible to clients
             </label>
             <label class="radio-label">
-              <input type="radio" name="goal" value="Help me sell my service/product" />
-              Help me sell my service/product
+              <input type="radio" name="goal" value="Sell my service or product" />
+              Sell my service or product
             </label>
             <label class="radio-label">
-              <input type="radio" name="goal" value="Help me land jobs / show my CV" />
-              Help me land jobs / show my CV
+              <input type="radio" name="goal" value="Land jobs / show my CV" />
+              Land jobs / show my CV
             </label>
             <label class="radio-label">
               <input type="radio" name="goal" value="Other" />
@@ -596,46 +783,52 @@
           <div class="other-expand" id="otherExpand">
             <input type="text" id="otherGoal" placeholder="Tell me what you need…" />
           </div>
-          <div class="field-error-msg" id="goalErr">Please select an option.</div>
+          <div class="field-error-msg" id="goalErr">Pick one.</div>
         </div>
 
         <div class="form-group">
-          <label for="brandColors">Brand colors or vibe? <span class="opt">(optional)</span></label>
-          <input type="text" id="brandColors" name="brandColors" placeholder="Leave blank if you want me to pick" />
+          <label for="brandColors">Brand colors <span class="opt">(optional)</span></label>
+          <input type="text" id="brandColors" name="brandColors" placeholder="Leave blank — I'll pick" />
         </div>
 
         <div class="form-group">
-          <label for="specificNeeds">Anything specific you need? <span class="opt">(optional)</span></label>
-          <textarea id="specificNeeds" name="specificNeeds" rows="4" placeholder="Booking calendar, contact form, portfolio gallery, etc."></textarea>
+          <label for="specificNeeds">Anything specific? <span class="opt">(optional)</span></label>
+          <textarea id="specificNeeds" name="specificNeeds" rows="3" placeholder="Booking calendar, gallery, contact form…"></textarea>
         </div>
 
         <!-- PAYMENT -->
         <div class="payment-divider"></div>
-        <div class="payment-heading">Deposit: 2,000 EGP</div>
-        <p class="payment-details">
-          Pay via <strong>InstaPay</strong>, <strong>Vodafone Cash</strong>, or <strong>Card</strong> to:<br>
-          <strong style="font-size:17px;letter-spacing:.02em">01091225373</strong>
-        </p>
+        <div class="payment-amount">Deposit</div>
+        <div class="payment-heading">2,000 EGP</div>
 
+        <div class="payment-row" style="margin-top:20px">
+          <span class="payment-row-label">InstaPay to</span>
+          <span class="payment-row-value">01091225373</span>
+          <span class="payment-method">InstaPay only</span>
+        </div>
+
+        <label style="margin-top:8px">Upload payment screenshot</label>
         <div class="upload-zone" id="uploadZone">
           <input type="file" id="paymentFile" name="paymentFile" accept="image/*" />
           <span class="upload-icon">↑</span>
-          <p class="upload-text">Upload your payment screenshot</p>
-          <p class="upload-hint">JPEG or PNG — tap here or drag &amp; drop</p>
+          <p class="upload-text">Drop screenshot here</p>
+          <p class="upload-hint">JPEG or PNG</p>
           <img class="upload-preview" id="uploadPreview" alt="Payment preview" />
           <p class="upload-filename" id="uploadFilename"></p>
         </div>
-        <div class="field-error-msg" id="fileErr">Please upload your payment screenshot.</div>
-
-        <p class="microcopy">Refundable if I don't deliver in 14 days. Final 8,000 EGP only after you approve the site.</p>
+        <div class="field-error-msg" id="fileErr">Upload your screenshot.</div>
 
         <button type="submit" class="submit-btn" id="submitBtn">
-          <span class="btn-text">Submit order →</span>
+          <span class="btn-text">Lock my spot →</span>
           <span class="btn-loading">Submitting…</span>
         </button>
 
+        <p class="microcopy">
+          <strong>Refundable in 14 days.</strong> Final 8K EGP only on your approval.
+        </p>
+
         <div class="form-error" id="formError">
-          Something went wrong. Please try again or WhatsApp me directly at 01091225373.
+          Something broke. WhatsApp 01091225373.
         </div>
       </form>
     </div>
@@ -644,8 +837,8 @@
 
 <footer>
   <div class="wrap">
-    <div>© <span id="yr"></span> LinkFolio. Professional websites for professionals.</div>
-    <div><a href="mailto:mr.abdulrahman.elsayed@gmail.com">mr.abdulrahman.elsayed@gmail.com</a> · <a href="https://wa.me/201091225373">01091225373</a></div>
+    <div>© <span id="yr"></span> LinkFolio.</div>
+    <div><a href="mailto:mr.abdulrahman.elsayed@gmail.com">Email</a> · <a href="https://wa.me/201091225373">01091225373</a></div>
   </div>
 </footer>
 
@@ -653,62 +846,95 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-  // ─── CONFIG ────────────────────────────────────────────────────────────────
   const EMAILJS_PUBLIC_KEY       = '5wQNhCwMwktf7r5Vl';
   const EMAILJS_SERVICE_ID       = 'service_wh7w6vs';
   const EMAILJS_TEMPLATE_CONFIRM = 'template_04l4ot9';
   const EMAILJS_TEMPLATE_NOTIFY  = 'template_mpdo6nx';
-  // ───────────────────────────────────────────────────────────────────────────
 
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  /* ─── DOTTED BG CANVAS ──────────────────────────────────────────────────── */
-  (function dotsBg(){
-    const canvas = document.getElementById('dotsBg');
-    if (!canvas || window.innerWidth < 720) { canvas.style.display = 'none'; return; }
-    const ctx = canvas.getContext('2d');
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let w, h, spacing = 28 * dpr, dotRadius = 1.2 * dpr, time = 0;
+  /* ─── WEBGL SHADER BACKGROUND ────────────────────────────────────────── */
+  (function shaderBg(){
+    const canvas = document.getElementById('shaderBg');
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl', { alpha: false, antialias: false });
+    if (!gl) { canvas.style.background = 'radial-gradient(ellipse at top,#1a1a22 0%,#0a0a0a 60%)'; return; }
+
+    const vsSrc = `attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}`;
+    const fsSrc = `
+      precision highp float;
+      uniform float t;
+      uniform vec2 r;
+      vec3 palette(float x){
+        return 0.5+0.5*cos(6.2831*(vec3(0.0,0.10,0.20)+x));
+      }
+      void main(){
+        vec2 uv=(gl_FragCoord.xy-0.5*r)/min(r.x,r.y);
+        float tt=t*0.00012;
+        vec2 p1=vec2(sin(tt*1.3)*0.6,cos(tt*1.1)*0.5);
+        vec2 p2=vec2(cos(tt*0.9+1.0)*0.65,sin(tt*1.5+0.5)*0.45);
+        vec2 p3=vec2(sin(tt*0.7+2.0)*0.5,cos(tt*1.3+3.0)*0.6);
+        float d1=length(uv-p1);
+        float d2=length(uv-p2);
+        float d3=length(uv-p3);
+        vec3 c1=vec3(0.10,0.06,0.16);
+        vec3 c2=vec3(0.06,0.10,0.18);
+        vec3 c3=vec3(0.14,0.08,0.05);
+        vec3 col=vec3(0.018);
+        col+=c1*(1.0-smoothstep(0.0,0.8,d1))*1.1;
+        col+=c2*(1.0-smoothstep(0.0,0.7,d2))*0.9;
+        col+=c3*(1.0-smoothstep(0.0,0.75,d3))*0.7;
+        float vig=length(uv)*0.6;
+        col*=1.0-vig;
+        col=pow(col,vec3(0.95));
+        gl_FragColor=vec4(col,1.0);
+      }`;
+
+    function compile(type, src){
+      const sh = gl.createShader(type);
+      gl.shaderSource(sh, src); gl.compileShader(sh);
+      return sh;
+    }
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
+    gl.linkProgram(prog); gl.useProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+    const aLoc = gl.getAttribLocation(prog, 'a');
+    gl.enableVertexAttribArray(aLoc);
+    gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const tLoc = gl.getUniformLocation(prog, 't');
+    const rLoc = gl.getUniformLocation(prog, 'r');
 
     function resize(){
-      w = canvas.width  = window.innerWidth  * dpr;
-      h = canvas.height = window.innerHeight * dpr;
-      canvas.style.width  = window.innerWidth  + 'px';
+      const dpr = Math.min(window.devicePixelRatio||1, 1.5);
+      canvas.width  = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width  = window.innerWidth + 'px';
       canvas.style.height = window.innerHeight + 'px';
+      gl.viewport(0,0,canvas.width,canvas.height);
+      gl.uniform2f(rLoc, canvas.width, canvas.height);
     }
-    resize(); window.addEventListener('resize', resize);
+    resize();
+    window.addEventListener('resize', resize);
 
-    let mouseX = w/2, mouseY = h/2;
-    window.addEventListener('mousemove', e => {
-      mouseX = e.clientX * dpr;
-      mouseY = e.clientY * dpr;
-    });
-
-    function draw(){
-      ctx.clearRect(0,0,w,h);
-      for (let x = spacing/2; x < w; x += spacing){
-        for (let y = spacing/2; y < h; y += spacing){
-          const dx = (x - mouseX) / w;
-          const dy = (y - mouseY) / h;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          const wave = Math.sin(dist * 14 - time * 0.025);
-          const baseAlpha = 0.18;
-          const ripple = Math.max(0, (0.3 - dist)) * 0.8;
-          const alpha = baseAlpha + wave * 0.06 + ripple;
-          ctx.fillStyle = `rgba(10,10,10,${Math.max(0.05, Math.min(0.4, alpha))})`;
-          ctx.beginPath();
-          ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-      time++;
-      requestAnimationFrame(draw);
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let start = performance.now();
+    function frame(now){
+      const elapsed = reduceMotion ? 0 : (now - start);
+      gl.uniform1f(tLoc, elapsed);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(frame);
     }
-    draw();
+    requestAnimationFrame(frame);
   })();
 
-  /* ─── SCROLL TILT FOR SHOWCASE ─────────────────────────────────────────── */
+  /* ─── SCROLL TILT ────────────────────────────────────────────────────── */
   (function scrollTilt(){
     const el = document.getElementById('tiltFrame');
     if (!el) return;
@@ -725,20 +951,50 @@
     window.addEventListener('resize', update);
   })();
 
-  /* ─── REVEAL ON SCROLL ─────────────────────────────────────────────────── */
+  /* ─── WORD-REVEAL TEXT ANIMATION ─────────────────────────────────────── */
+  (function wordReveal(){
+    document.querySelectorAll('[data-reveal-words]').forEach(el => {
+      const text = el.textContent;
+      el.innerHTML = '';
+      text.split(/(\s+)/).forEach((part) => {
+        if (/^\s+$/.test(part)) { el.appendChild(document.createTextNode(part)); return; }
+        const span = document.createElement('span');
+        span.className = 'rw';
+        span.textContent = part;
+        el.appendChild(span);
+      });
+      const spans = el.querySelectorAll('.rw');
+      spans.forEach((s, i) => { s.style.transitionDelay = `${0.04 * i}s`; });
+      const fire = () => spans.forEach(s => s.classList.add('show'));
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(es => {
+          es.forEach(e => { if (e.isIntersecting) { fire(); io.unobserve(e.target); }});
+        }, { threshold:0.2 });
+        io.observe(el);
+      } else fire();
+    });
+  })();
+
+  /* ─── REVEAL ON SCROLL ───────────────────────────────────────────────── */
   (function reveal(){
     const items = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      items.forEach(i => i.classList.add('in'));
-      return;
-    }
+    if (!('IntersectionObserver' in window)) { items.forEach(i => i.classList.add('in')); return; }
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }});
     }, { threshold:0.15 });
     items.forEach(i => obs.observe(i));
   })();
 
-  /* ─── DIRECTION CARDS ─────────────────────────────────────────────────── */
+  /* ─── SPOTLIGHT CARD MOUSE TRACKING ──────────────────────────────────── */
+  document.querySelectorAll('.spotlight').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+
+  /* ─── DIRECTION CARDS ───────────────────────────────────────────────── */
   document.querySelectorAll('.direction-card input[type="radio"]').forEach(radio => {
     radio.addEventListener('change', () => {
       document.querySelectorAll('.direction-card').forEach(c => c.classList.remove('selected'));
@@ -747,7 +1003,7 @@
     });
   });
 
-  /* ─── GOAL RADIO ──────────────────────────────────────────────────────── */
+  /* ─── GOAL RADIO ────────────────────────────────────────────────────── */
   document.querySelectorAll('input[name="goal"]').forEach(radio => {
     radio.addEventListener('change', () => {
       document.querySelectorAll('.radio-label').forEach(l => l.classList.remove('selected'));
@@ -758,7 +1014,7 @@
     });
   });
 
-  /* ─── FILE UPLOAD ──────────────────────────────────────────────────────── */
+  /* ─── FILE UPLOAD ───────────────────────────────────────────────────── */
   const paymentFile = document.getElementById('paymentFile');
   const uploadZone  = document.getElementById('uploadZone');
   const preview     = document.getElementById('uploadPreview');
@@ -775,7 +1031,7 @@
     reader.readAsDataURL(file);
   });
 
-  /* ─── IMAGE COMPRESSION ─────────────────────────────────────────────────── */
+  /* ─── IMAGE COMPRESSION ─────────────────────────────────────────────── */
   function compressImage(file, maxPx = 1200, quality = 0.75) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -797,7 +1053,7 @@
     });
   }
 
-  /* ─── VALIDATION ──────────────────────────────────────────────────────── */
+  /* ─── VALIDATION ────────────────────────────────────────────────────── */
   function setError(inputId, msgId, show) {
     const el  = document.getElementById(inputId);
     const msg = document.getElementById(msgId);
@@ -824,11 +1080,10 @@
     return !!(name && email && emailOK && wp && goal && direction && hasFile);
   }
 
-  /* ─── SUBMIT ──────────────────────────────────────────────────────────── */
+  /* ─── SUBMIT ────────────────────────────────────────────────────────── */
   document.getElementById('orderForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      // Scroll to first error
       const firstErr = document.querySelector('.field-error-msg.visible, .field-error');
       if (firstErr) firstErr.scrollIntoView({ behavior:'smooth', block:'center' });
       return;
@@ -858,13 +1113,12 @@
     try {
       const base64Screenshot = await compressImage(file);
 
-      // 1. Notion + ImgBB (non-blocking)
       let screenshotUrl = '(not available)';
       try {
         const apiRes = await fetch('/api/contact', {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body:JSON.stringify({
             name, email, whatsapp, goal, otherGoal,
             styleRefs: direction, brandColors, specificNeeds,
             paymentScreenshot: base64Screenshot
@@ -876,14 +1130,12 @@
         console.warn('Notion logging failed (non-fatal):', apiErr);
       }
 
-      // 2. Confirmation to submitter
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CONFIRM, {
         first_name:    firstName,
         to_email:      email,
         delivery_date: deliveryStr,
       });
 
-      // 3. Notification to owner
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_NOTIFY, {
         client_name:     name,
         client_email:    email,
