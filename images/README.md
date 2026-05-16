@@ -16,7 +16,7 @@ Recommended size for direction images: 1200x1500px (4:5 aspect ratio), JPEG, und
 
 ## After adding files
 ```
-cd agency-intake
+cd linkfolio
 git add images/
 git commit -m "Add logo and direction images"
 git push
