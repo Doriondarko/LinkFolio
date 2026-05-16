@@ -1,0 +1,244 @@
+<!--
+  ============================================================
+  LinkFolio — Order Confirmation Email Template
+  ============================================================
+  How to use this in EmailJS:
+  1. Open EmailJS dashboard → Email Templates → "Confirmation Email"
+  2. Click the "Code Editor" or "</>" toggle to switch to HTML mode
+  3. DELETE everything in the editor
+  4. COPY the HTML below (from <!DOCTYPE> down to </html>) and paste it
+  5. In the template settings panel:
+       - Subject:    Got it, {{first_name}} — your site starts today
+       - To Email:   {{to_email}}
+       - From Name:  Abdulrahman | LinkFolio
+       - Reply To:   mr.abdulrahman.elsayed@gmail.com
+  6. Save the template
+  ============================================================
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Got it, {{first_name}} — your site starts today</title>
+</head>
+<body style="margin:0;padding:0;background-color:#fafaf7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#0a0a0a;-webkit-font-smoothing:antialiased;">
+
+<!-- Preheader (hidden preview text) -->
+<div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#fafaf7;opacity:0;">
+  Deposit received — you're locked in. Here's exactly what happens over the next 14 days.
+</div>
+
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#fafaf7;">
+  <tr>
+    <td align="center" style="padding:32px 16px;">
+
+      <!-- Main container -->
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width:600px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e3dc;box-shadow:0 8px 32px -8px rgba(0,0,0,0.08);">
+
+        <!-- Dark header strip with logo -->
+        <tr>
+          <td style="background-color:#0a0a0a;padding:36px 40px;text-align:left;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:22px;color:#ffffff;letter-spacing:-0.5px;">
+                  LinkFolio<span style="color:#888888;">.</span>
+                </td>
+                <td align="right" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#888888;font-weight:500;">
+                  Order Confirmation
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Greeting + headline -->
+        <tr>
+          <td style="padding:48px 40px 20px 40px;">
+            <p style="margin:0 0 6px 0;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#22c55e;font-weight:600;">
+              ✓ Deposit received
+            </p>
+            <h1 style="margin:0 0 16px 0;font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:34px;line-height:1.1;letter-spacing:-0.8px;color:#0a0a0a;">
+              You're locked in,<br />
+              <em style="color:#555555;">{{first_name}}.</em>
+            </h1>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:#3a3a36;">
+              Your site starts today. Here's exactly what happens next — no guesswork, no waiting on email threads.
+            </p>
+          </td>
+        </tr>
+
+        <!-- Timeline -->
+        <tr>
+          <td style="padding:24px 40px 8px 40px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-top:1px solid #e5e3dc;">
+
+              <!-- Day 1-2 -->
+              <tr>
+                <td style="padding:24px 0 20px 0;border-bottom:1px solid #f0eee8;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td width="100" valign="top" style="font-family:Georgia,serif;font-size:13px;letter-spacing:1.5px;color:#999999;font-weight:600;text-transform:uppercase;">
+                        Day 1–2
+                      </td>
+                      <td valign="top">
+                        <p style="margin:0 0 4px 0;font-family:Georgia,serif;font-size:17px;font-weight:500;color:#0a0a0a;letter-spacing:-0.2px;">
+                          Two design directions, sent to your inbox.
+                        </p>
+                        <p style="margin:0;font-size:14px;color:#6b6b66;line-height:1.55;">
+                          Built from your form answers + your LinkedIn. You pick the one that feels right.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Day 3-10 -->
+              <tr>
+                <td style="padding:20px 0;border-bottom:1px solid #f0eee8;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td width="100" valign="top" style="font-family:Georgia,serif;font-size:13px;letter-spacing:1.5px;color:#999999;font-weight:600;text-transform:uppercase;">
+                        Day 3–10
+                      </td>
+                      <td valign="top">
+                        <p style="margin:0 0 4px 0;font-family:Georgia,serif;font-size:17px;font-weight:500;color:#0a0a0a;letter-spacing:-0.2px;">
+                          I build your full site.
+                        </p>
+                        <p style="margin:0;font-size:14px;color:#6b6b66;line-height:1.55;">
+                          Mobile-ready. Polished. Pulled together with your real content, not lorem ipsum.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Day 11-14 -->
+              <tr>
+                <td style="padding:20px 0;border-bottom:1px solid #f0eee8;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td width="100" valign="top" style="font-family:Georgia,serif;font-size:13px;letter-spacing:1.5px;color:#999999;font-weight:600;text-transform:uppercase;">
+                        Day 11–14
+                      </td>
+                      <td valign="top">
+                        <p style="margin:0 0 4px 0;font-family:Georgia,serif;font-size:17px;font-weight:500;color:#0a0a0a;letter-spacing:-0.2px;">
+                          You review. Unlimited revisions.
+                        </p>
+                        <p style="margin:0;font-size:14px;color:#6b6b66;line-height:1.55;">
+                          Be picky. Change anything. This is your window — use all of it.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Approval -->
+              <tr>
+                <td style="padding:20px 0 24px 0;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td width="100" valign="top" style="font-family:Georgia,serif;font-size:13px;letter-spacing:1.5px;color:#0a0a0a;font-weight:700;text-transform:uppercase;">
+                        Approval
+                      </td>
+                      <td valign="top">
+                        <p style="margin:0 0 4px 0;font-family:Georgia,serif;font-size:17px;font-weight:500;color:#0a0a0a;letter-spacing:-0.2px;">
+                          You pay the remaining 8,000 EGP. I launch.
+                        </p>
+                        <p style="margin:0;font-size:14px;color:#6b6b66;line-height:1.55;">
+                          I buy your domain, push it live, and hand you the keys.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- After launch box -->
+        <tr>
+          <td style="padding:8px 40px 32px 40px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#fafaf7;border:1px solid #e5e3dc;border-radius:8px;">
+              <tr>
+                <td style="padding:20px 24px;">
+                  <p style="margin:0 0 6px 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999999;font-weight:600;">
+                    After launch
+                  </p>
+                  <p style="margin:0;font-size:14px;color:#3a3a36;line-height:1.6;">
+                    <strong style="color:#0a0a0a;">1,000 EGP/month</strong> covers hosting, domain renewal, content updates, and any small fixes. Cancel anytime.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Hero CTA / Date -->
+        <tr>
+          <td style="padding:0 40px 40px 40px;text-align:center;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#0a0a0a;border-radius:10px;">
+              <tr>
+                <td style="padding:32px 24px;text-align:center;">
+                  <p style="margin:0 0 8px 0;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#888888;font-weight:600;">
+                    Your first designs land by
+                  </p>
+                  <p style="margin:0;font-family:Georgia,serif;font-size:30px;font-weight:500;color:#ffffff;letter-spacing:-0.5px;">
+                    {{delivery_date}}
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Closing -->
+        <tr>
+          <td style="padding:0 40px 40px 40px;">
+            <p style="margin:0 0 14px 0;font-size:15px;line-height:1.65;color:#3a3a36;">
+              Questions before then? Just reply to this email — it goes straight to my inbox.
+            </p>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3a3a36;">
+              Talk soon,
+            </p>
+            <p style="margin:14px 0 0 0;font-family:Georgia,serif;font-size:20px;font-weight:500;color:#0a0a0a;letter-spacing:-0.2px;">
+              — Abdulrahman
+            </p>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="border-top:1px solid #e5e3dc;padding:24px 40px;background:#fafaf7;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="font-size:12px;color:#999999;line-height:1.6;">
+                  <strong style="color:#3a3a36;">LinkFolio</strong><br />
+                  Professional websites, built for professionals.<br />
+                  <a href="https://wa.me/201091225373" style="color:#3a3a36;text-decoration:underline;">+20 109 122 5373</a>
+                  &nbsp;·&nbsp;
+                  <a href="mailto:mr.abdulrahman.elsayed@gmail.com" style="color:#3a3a36;text-decoration:underline;">Email</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- Tiny postscript -->
+      <p style="margin:24px 0 0 0;font-size:11px;color:#999999;text-align:center;">
+        You received this because you submitted an order at linkfolio.<br />
+        Refundable if I don't deliver in 14 days.
+      </p>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
