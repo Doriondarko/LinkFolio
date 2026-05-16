@@ -530,8 +530,24 @@
   footer a{color:var(--ink-soft);text-decoration:none}
   footer a:hover{color:var(--ink)}
 
+  /* ACCESSIBILITY — keyboard focus rings (skill: focus-states HIGH severity) */
+  .btn-liquid:focus-visible,
+  .btn-ghost:focus-visible,
+  .submit-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .direction-card:focus-within{border-color:var(--ink);box-shadow:0 0 0 3px rgba(255,255,255,.18)}
+  .radio-label:focus-within{border-color:var(--ink);background:#1d1d1f;box-shadow:0 0 0 3px rgba(255,255,255,.12);color:var(--ink)}
+  .upload-zone:focus-within{border-color:var(--ink);background:#1a1a1d}
+  nav a:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:6px}
+  input:focus-visible,textarea:focus-visible{outline:none}
+
   @media(prefers-reduced-motion:reduce){
-    .reveal,.rw{transition:none!important;opacity:1!important;transform:none!important}
+    *,*::before,*::after{
+      animation-duration:0.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.01ms !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal,.rw{opacity:1!important;transform:none!important}
     .tilt-frame{transform:none!important}
   }
 </style>
@@ -675,7 +691,7 @@
 
           <div class="direction-picker" role="radiogroup" aria-label="Design direction">
             <label class="direction-card spotlight" data-num="01">
-              <input type="radio" name="direction" value="01 — Dark + Editorial (Carlos Mendoza style)" required>
+              <input type="radio" name="direction" value="01 — Dark + Editorial (Carlos Mendoza style)" required aria-required="true">
               <div class="direction-thumb direction-thumb-1" style="background-image:url('images/1.jpg')">
                 <span class="direction-num">01</span>
                 <span class="direction-check">✓</span>
@@ -739,19 +755,19 @@
 
         <div class="form-group">
           <label for="name">Full name</label>
-          <input type="text" id="name" name="name" placeholder="Abdulrahman Ibrahim" autocomplete="name" required />
+          <input type="text" id="name" name="name" placeholder="Abdulrahman Ibrahim" autocomplete="name" required aria-required="true" />
           <div class="field-error-msg" id="nameErr">Enter your name.</div>
         </div>
 
         <div class="form-row">
           <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" />
             <div class="field-error-msg" id="emailErr">Enter a valid email.</div>
           </div>
           <div>
             <label for="whatsapp">WhatsApp</label>
-            <input type="tel" id="whatsapp" name="whatsapp" placeholder="01xxxxxxxxx" autocomplete="tel" required />
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="01xxxxxxxxx" autocomplete="tel" required aria-required="true" />
             <div class="field-error-msg" id="whatsappErr">Enter your WhatsApp.</div>
           </div>
         </div>
@@ -764,7 +780,7 @@
           <div class="radio-heading">What's the #1 job?</div>
           <div class="radio-options">
             <label class="radio-label">
-              <input type="radio" name="goal" value="Look credible to clients" required />
+              <input type="radio" name="goal" value="Look credible to clients" required aria-required="true" />
               Look credible to clients
             </label>
             <label class="radio-label">
