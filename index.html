@@ -1148,9 +1148,9 @@
   /* Nudge scroll — lets hero land, then hints at the form below */
   setTimeout(() => {
     if (window.scrollY === 0) {
-      window.scrollTo({ top: 140, behavior: 'smooth' });
+      document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
     }
-  }, 1800);
+  }, 5000);
 
   /* ─── WEBGL SHADER BACKGROUND ────────────────────────────────────────── */
   (function shaderBg(){
