@@ -129,7 +129,7 @@
   .btn-ghost.lg{padding:17px 30px;font-size:14.5px}
 
   /* HERO */
-  .hero{padding:120px 0 140px;position:relative;overflow:hidden}
+  .hero{padding:120px 0 72px;position:relative;overflow:hidden}
   .hero-sparkles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
   .hero-sparkles canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   /* Radial mask — fades sparkles toward edges like the Aceternity demo */
@@ -274,7 +274,7 @@
   .hero-meta-item small{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
   .hero-meta-item strong{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.02em;color:var(--ink)}
   @media(max-width:720px){
-    .hero{padding:80px 0 100px}
+    .hero{padding:80px 0 56px}
     .hero-meta{grid-template-columns:1fr 1fr}
     .hero-meta-item{padding:20px 16px 20px 0!important;border-bottom:1px solid var(--line)}
     .hero-meta-item:nth-child(odd){border-right:1px solid var(--line)}
@@ -1144,6 +1144,13 @@
 
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* Nudge scroll — lets hero land, then hints at the form below */
+  setTimeout(() => {
+    if (window.scrollY === 0) {
+      window.scrollTo({ top: 140, behavior: 'smooth' });
+    }
+  }, 1800);
 
   /* ─── WEBGL SHADER BACKGROUND ────────────────────────────────────────── */
   (function shaderBg(){
