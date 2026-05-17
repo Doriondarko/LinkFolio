@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dalia ElHefny — Real Estate Consultant, Cairo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:  #161210;
+      --dark2: #221d19;
+      --cream: #f5f0e8;
+      --warm:  #b8926a;
+      --text:  #28201a;
+      --soft:  #6b5e52;
+      --line:  #e0d8cc;
+      --white: #fdfcfa;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .35s, padding .35s, box-shadow .35s;
+    }
+    .nav.scrolled {
+      background: var(--white);
+      padding: 18px 56px;
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 500;
+      color: #fff; letter-spacing: .05em;
+      text-decoration: none; transition: color .3s;
+    }
+    .nav.scrolled .nav-logo { color: var(--dark); }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.7);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav.scrolled .nav-links a { color: var(--soft); }
+    .nav-links a:hover { color: #fff; }
+    .nav.scrolled .nav-links a:hover { color: var(--dark); }
+    .nav-cta {
+      font-size: 12px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: #fff;
+      padding: 10px 22px; border: 1px solid rgba(255,255,255,.5);
+      text-decoration: none; transition: background .2s, border-color .2s;
+    }
+    .nav.scrolled .nav-cta {
+      color: var(--dark); border-color: var(--dark);
+    }
+    .nav-cta:hover { background: rgba(255,255,255,.12); }
+    .nav.scrolled .nav-cta:hover { background: var(--dark); color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh; min-height: 640px;
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=85') center/cover no-repeat;
+      display: flex; align-items: flex-end;
+      padding: 0 56px 88px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg,
+        rgba(16,12,8,.25) 0%,
+        rgba(16,12,8,.45) 50%,
+        rgba(16,12,8,.82) 100%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 640px; }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; color: rgba(255,255,255,.6);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+    }
+    .hero-eyebrow::before { content: '●'; font-size: 5px; color: var(--warm); }
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5.2vw, 76px);
+      font-weight: 500; line-height: 1.08;
+      color: #fff; margin-bottom: 40px;
+      letter-spacing: -.01em;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-outline-white {
+      padding: 13px 30px; border: 1px solid rgba(255,255,255,.55);
+      color: #fff; font-size: 13px; font-weight: 500; letter-spacing: .06em;
+      text-decoration: none; transition: background .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+    .btn-warm {
+      padding: 13px 30px; background: var(--warm); border: 1px solid var(--warm);
+      color: #fff; font-size: 13px; font-weight: 500; letter-spacing: .06em;
+      text-decoration: none; transition: background .2s;
+      white-space: nowrap;
+    }
+    .btn-warm:hover { background: #a07855; }
+    .hero-chat {
+      position: absolute; bottom: 88px; right: 56px; z-index: 1;
+      width: 50px; height: 50px;
+      border: 1px solid rgba(255,255,255,.35); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; cursor: pointer; text-decoration: none;
+      transition: background .2s;
+    }
+    .hero-chat:hover { background: rgba(255,255,255,.12); }
+
+    /* ── ABOUT ── */
+    .about { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+    .about-img {
+      background: url('https://images.unsplash.com/photo-1582407947304-fd86f28f7e37?w=900&q=85') center/cover no-repeat;
+    }
+    .about-body {
+      padding: 80px 68px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--white);
+    }
+    .eyebrow-warm {
+      font-size: 11px; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--warm);
+      display: flex; align-items: center; gap: 8px; margin-bottom: 24px;
+    }
+    .eyebrow-warm::before { content: '●'; font-size: 5px; }
+    .about-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 2.8vw, 40px);
+      font-weight: 500; line-height: 1.25;
+      color: var(--dark); margin-bottom: 28px;
+    }
+    .about-list { list-style: none; margin-bottom: 44px; }
+    .about-list li {
+      font-size: 13.5px; color: var(--soft);
+      padding: 9px 0; border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .about-list li::before { content: '+'; font-weight: 700; color: var(--warm); font-size: 15px; }
+    .btn-dark {
+      display: inline-block; padding: 14px 32px;
+      background: var(--dark); color: #fff;
+      font-size: 13px; font-weight: 500; letter-spacing: .07em;
+      text-decoration: none; transition: background .2s; cursor: pointer;
+      align-self: flex-start;
+    }
+    .btn-dark:hover { background: var(--dark2); }
+
+    /* ── STATS ── */
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); background: var(--cream); }
+    .stat { padding: 60px 52px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px; font-weight: 400;
+      color: var(--dark); line-height: 1; margin-bottom: 12px;
+    }
+    .stat-label { font-size: 13px; color: var(--soft); line-height: 1.6; max-width: 18ch; }
+
+    /* ── PROPERTIES ── */
+    .properties { padding: 108px 56px; background: var(--white); }
+    .section-top {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .section-h {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 44px); font-weight: 500; color: var(--dark);
+    }
+    .prop-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+    .prop-card { position: relative; overflow: hidden; cursor: pointer; }
+    .prop-card img {
+      width: 100%; height: 340px; object-fit: cover;
+      display: block; transition: transform .6s cubic-bezier(.25,.46,.45,.94);
+    }
+    .prop-card:hover img { transform: scale(1.05); }
+    .prop-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(16,12,8,.82) 0%, transparent 55%);
+      padding: 28px; display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .prop-tag {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 5px 12px; background: var(--warm); color: #fff;
+      margin-bottom: 10px; align-self: flex-start;
+    }
+    .prop-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 500; color: #fff; margin-bottom: 5px;
+    }
+    .prop-meta { font-size: 12px; color: rgba(255,255,255,.6); letter-spacing: .04em; }
+
+    /* ── WHY ── */
+    .why { background: var(--dark); padding: 108px 56px; }
+    .why-top {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 72px; gap: 40px;
+    }
+    .why-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4.2vw, 60px); font-weight: 500;
+      color: #fff; max-width: 14ch; line-height: 1.08;
+    }
+    .why-sub {
+      font-size: 14px; color: rgba(255,255,255,.42);
+      max-width: 34ch; line-height: 1.75; flex-shrink: 0;
+    }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-top: 1px solid rgba(255,255,255,.1);
+      border-left: 1px solid rgba(255,255,255,.1);
+    }
+    .why-item {
+      padding: 44px 36px;
+      border-right: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .why-num {
+      font-size: 10px; font-weight: 600; letter-spacing: .16em;
+      color: var(--warm); margin-bottom: 28px;
+    }
+    .why-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 23px; font-weight: 500; color: #fff;
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .why-text { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.8; }
+
+    /* ── AGENT ── */
+    .agent {
+      padding: 108px 56px;
+      display: grid; grid-template-columns: 400px 1fr;
+      gap: 88px; align-items: center;
+      background: var(--white);
+    }
+    .agent-photo { position: relative; }
+    .agent-photo img {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover;
+      object-position: top; display: block;
+    }
+    .agent-badge {
+      position: absolute; bottom: -24px; left: -24px;
+      background: var(--warm); color: #fff; padding: 18px 26px;
+      min-width: 190px;
+    }
+    .agent-badge strong { display: block; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+    .agent-badge span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+    .agent-body { padding-bottom: 24px; }
+    .agent-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 46px); font-weight: 500;
+      color: var(--dark); margin-bottom: 20px; margin-top: 12px; line-height: 1.2;
+    }
+    .agent-bio {
+      font-size: 14px; color: var(--soft);
+      line-height: 1.85; margin-bottom: 36px;
+    }
+    .agent-points h4 {
+      font-size: 11px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--text); margin-bottom: 16px;
+    }
+    .agent-points ul { list-style: none; margin-bottom: 40px; }
+    .agent-points li {
+      font-size: 13.5px; color: var(--soft);
+      padding: 7px 0; display: flex; align-items: center; gap: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .agent-points li::before { content: '·'; font-size: 22px; color: var(--warm); line-height: 0; margin-top: 2px; }
+
+    /* ── AREAS ── */
+    .areas { padding: 108px 56px; background: var(--cream); }
+    .areas-head { text-align: center; margin-bottom: 64px; }
+    .areas-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 44px); font-weight: 500;
+      color: var(--dark); margin-bottom: 14px;
+    }
+    .areas-sub { font-size: 14px; color: var(--soft); max-width: 46ch; margin: 0 auto; line-height: 1.7; }
+    .areas-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 3px; }
+    .area-item {
+      padding: 44px 24px; background: var(--white);
+      text-align: center; transition: background .25s; cursor: pointer;
+    }
+    .area-item:hover { background: var(--dark); }
+    .area-item:hover .area-name,
+    .area-item:hover .area-count { color: rgba(255,255,255,.55); }
+    .area-item:hover .area-name { color: #fff; }
+    .area-num { font-size: 10px; font-weight: 700; letter-spacing: .14em; color: var(--warm); margin-bottom: 14px; }
+    .area-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px; font-weight: 500; color: var(--dark);
+      margin-bottom: 8px; transition: color .25s;
+    }
+    .area-count { font-size: 12px; color: var(--soft); transition: color .25s; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 108px 56px; background: var(--white); }
+    .testimonials-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 44px); font-weight: 500;
+      color: var(--dark); margin-bottom: 56px;
+    }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+    .testi-card { padding: 44px 38px; background: var(--cream); }
+    .testi-stars { color: var(--warm); font-size: 14px; letter-spacing: 3px; margin-bottom: 20px; }
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px; font-style: italic;
+      color: var(--text); line-height: 1.65; margin-bottom: 32px;
+    }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--dark); display: flex; align-items: center;
+      justify-content: center; font-size: 13px; font-weight: 700;
+      color: #fff; flex-shrink: 0;
+    }
+    .testi-name { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
+    .testi-role { font-size: 11px; color: var(--soft); }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 108px 56px;
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 88px; align-items: start;
+    }
+    .contact-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 46px); font-weight: 500;
+      color: #fff; margin-top: 12px; margin-bottom: 20px; line-height: 1.2;
+    }
+    .contact-text {
+      font-size: 14px; color: rgba(255,255,255,.48);
+      line-height: 1.85; margin-bottom: 44px;
+    }
+    .contact-detail {
+      display: flex; align-items: center;
+      gap: 16px; margin-bottom: 18px;
+    }
+    .contact-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,.18);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg {
+      width: 15px; height: 15px;
+      stroke: var(--warm); fill: none;
+      stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .contact-detail-text { font-size: 13.5px; color: rgba(255,255,255,.6); }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .cf-field { margin-bottom: 14px; }
+    .cf-field label {
+      display: block; font-size: 10px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.38); margin-bottom: 8px;
+    }
+    .cf-field input,
+    .cf-field textarea,
+    .cf-field select {
+      width: 100%; padding: 14px 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      color: #fff; font-family: 'Inter', sans-serif; font-size: 14px;
+      outline: none; transition: border-color .2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .cf-field input::placeholder,
+    .cf-field textarea::placeholder { color: rgba(255,255,255,.22); }
+    .cf-field input:focus,
+    .cf-field textarea:focus,
+    .cf-field select:focus { border-color: var(--warm); }
+    .cf-field select option { background: var(--dark2); color: #fff; }
+    .cf-field textarea { resize: vertical; min-height: 120px; }
+    .cf-submit {
+      width: 100%; margin-top: 6px; padding: 16px;
+      background: var(--warm); color: #fff; border: none;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+      letter-spacing: .06em; cursor: pointer; transition: background .2s;
+    }
+    .cf-submit:hover { background: #a07855; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 36px 56px;
+      background: var(--dark2);
+      border-top: 1px solid rgba(255,255,255,.07);
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 500; color: rgba(255,255,255,.5);
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.28); }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--warm); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px) {
+      .nav { padding: 22px 32px; }
+      .nav.scrolled { padding: 16px 32px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 32px 72px; }
+      .hero-chat { right: 32px; bottom: 72px; }
+      .about { grid-template-columns: 1fr; }
+      .about-img { min-height: 380px; }
+      .about-body { padding: 64px 40px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: none; }
+      .properties, .why, .agent, .areas, .testimonials, .contact { padding: 80px 32px; }
+      .prop-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .agent { grid-template-columns: 1fr; gap: 60px; }
+      .agent-photo img { aspect-ratio: 3/2; object-position: center 20%; }
+      .agent-badge { bottom: -16px; left: 16px; }
+      .areas-grid { grid-template-columns: repeat(3,1fr); }
+      .testi-grid { grid-template-columns: 1fr 1fr; }
+      .contact { grid-template-columns: 1fr; gap: 56px; }
+      .footer { padding: 32px; flex-wrap: wrap; }
+    }
+    @media(max-width:600px) {
+      .hero { padding: 0 24px 60px; }
+      .hero-btns { flex-direction: column; align-items: flex-start; }
+      .nav { padding: 20px 24px; }
+      .nav.scrolled { padding: 14px 24px; }
+      .properties, .why, .agent, .areas, .testimonials, .contact { padding: 64px 24px; }
+      .about-body { padding: 48px 24px; }
+      .prop-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .areas-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .cf-row { grid-template-columns: 1fr; }
+      .section-top { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .stat { padding: 40px 24px; }
+      .footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <a href="#" class="nav-logo">D.ElHefny</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#properties">Properties</a></li>
+        <li><a href="#agent">About</a></li>
+        <li><a href="#areas">Areas</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Explore. Discover. Buy.</p>
+      <h1 class="hero-h1">Your Trusted Partner in Cairo Real Estate</h1>
+      <div class="hero-btns">
+        <a href="#properties" class="btn-outline-white">View Properties</a>
+        <a href="#contact" class="btn-warm">Book a Free Consultation</a>
+      </div>
+    </div>
+    <a href="#contact" class="hero-chat" aria-label="Message me">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-img"></div>
+    <div class="about-body">
+      <p class="eyebrow-warm">About Dalia</p>
+      <h2 class="about-h2">Dalia helps buyers, sellers, and investors make confident real estate decisions.</h2>
+      <ul class="about-list">
+        <li>Client-first approach</li>
+        <li>Deep Cairo market expertise</li>
+        <li>Transparent and reliable process</li>
+        <li>Results-driven service</li>
+      </ul>
+      <a href="#agent" class="btn-dark">Learn More About Dalia</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">300+</div>
+      <div class="stat-label">Properties Successfully Sold &amp; Rented</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Client Satisfaction Rate</div>
+    </div>
+  </div>
+
+  <!-- PROPERTIES -->
+  <section class="properties" id="properties">
+    <div class="section-top">
+      <h2 class="section-h">Explore Available Properties</h2>
+      <a href="#contact" class="btn-dark">All Properties</a>
+    </div>
+    <div class="prop-grid">
+      <div class="prop-card">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80" alt="Luxury Apartment — New Cairo" loading="lazy">
+        <div class="prop-overlay">
+          <span class="prop-tag">For Sale</span>
+          <div class="prop-name">Luxury City Apartment</div>
+          <div class="prop-meta">New Cairo &nbsp;·&nbsp; 3 BR &nbsp;·&nbsp; 185 m²</div>
+        </div>
+      </div>
+      <div class="prop-card">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80" alt="Modern Villa — Sheikh Zayed" loading="lazy">
+        <div class="prop-overlay">
+          <span class="prop-tag">For Sale</span>
+          <div class="prop-name">Modern Villa</div>
+          <div class="prop-meta">Sheikh Zayed &nbsp;·&nbsp; 5 BR &nbsp;·&nbsp; 420 m²</div>
+        </div>
+      </div>
+      <div class="prop-card">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80" alt="Premium Penthouse — Maadi" loading="lazy">
+        <div class="prop-overlay">
+          <span class="prop-tag">For Rent</span>
+          <div class="prop-name">Premium Penthouse</div>
+          <div class="prop-meta">Maadi &nbsp;·&nbsp; 4 BR &nbsp;·&nbsp; 260 m²</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE ME -->
+  <section class="why">
+    <div class="why-top">
+      <h2 class="why-h2">Why Clients Choose Me</h2>
+      <p class="why-sub">Deep expertise, genuine care, and results you can count on — every step of the way.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num">01 / 04</div>
+        <h3 class="why-title">Local Market Expertise</h3>
+        <p class="why-text">Deep understanding of Cairo's neighborhoods, pricing trends, and opportunities to help you choose the right area and make informed, data-driven decisions.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02 / 04</div>
+        <h3 class="why-title">Client-First Approach</h3>
+        <p class="why-text">Your goals come first. I take time to understand exactly what you need and work tirelessly to find the property that matches your vision and budget.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03 / 04</div>
+        <h3 class="why-title">Transparent Process</h3>
+        <p class="why-text">No surprises. Clear communication at every stage — from the first showing to the final signature. You'll always know exactly where things stand.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04 / 04</div>
+        <h3 class="why-title">Investment Insight</h3>
+        <p class="why-text">Years of advising investors across New Cairo, Maadi, and Sheikh Zayed. I know which locations deliver real, long-term value for your portfolio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENT PROFILE -->
+  <section class="agent" id="agent">
+    <div class="agent-photo">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=85" alt="Dalia ElHefny — Real Estate Consultant" loading="lazy">
+      <div class="agent-badge">
+        <strong>Dalia ElHefny</strong>
+        <span>Real Estate Consultant</span>
+      </div>
+    </div>
+    <div class="agent-body">
+      <p class="eyebrow-warm">Meet Your Trusted Advisor</p>
+      <h2 class="agent-h2">Meet Your Trusted Real Estate Advisor</h2>
+      <p class="agent-bio">A dedicated real estate professional helping clients make confident property decisions through local expertise and transparent service. With over a decade in the Cairo market, Dalia combines sharp market knowledge with a personal, hands-on approach that puts your success first.</p>
+      <div class="agent-points">
+        <h4>Key Points</h4>
+        <ul>
+          <li>Licensed &amp; Experienced Real Estate Consultant</li>
+          <li>Strong Local Market Knowledge — Cairo &amp; Greater Cairo</li>
+          <li>Personalized, One-on-One Service</li>
+          <li>Skilled Negotiation &amp; Clear Communication</li>
+          <li>Cairo University Graduate</li>
+        </ul>
+      </div>
+      <a href="#contact" class="btn-dark">Book a Consultation</a>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="areas" id="areas">
+    <div class="areas-head">
+      <h2 class="areas-h2">Explore the Most Popular Areas</h2>
+      <p class="areas-sub">Specializing in Cairo's most sought-after neighborhoods for buyers, renters, and investors.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-item">
+        <div class="area-num">01</div>
+        <div class="area-name">New Cairo</div>
+        <div class="area-count">85+ Properties</div>
+      </div>
+      <div class="area-item">
+        <div class="area-num">02</div>
+        <div class="area-name">Sheikh Zayed</div>
+        <div class="area-count">60+ Properties</div>
+      </div>
+      <div class="area-item">
+        <div class="area-num">03</div>
+        <div class="area-name">Maadi</div>
+        <div class="area-count">50+ Properties</div>
+      </div>
+      <div class="area-item">
+        <div class="area-num">04</div>
+        <div class="area-name">Zamalek</div>
+        <div class="area-count">35+ Properties</div>
+      </div>
+      <div class="area-item">
+        <div class="area-num">05</div>
+        <div class="area-name">6th of October</div>
+        <div class="area-count">40+ Properties</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <h2 class="testimonials-h2">What My Clients Say</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Dalia made finding our dream home in New Cairo completely stress-free. Her knowledge of the market and honest advice saved us both time and money."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <div class="testi-name">Ahmed Karim</div>
+            <div class="testi-role">Buyer — New Cairo</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Sold our Maadi apartment at the right price in under 3 weeks. Dalia's negotiation skills and network are exceptional. Highly recommend."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SM</div>
+          <div>
+            <div class="testi-name">Sara Mostafa</div>
+            <div class="testi-role">Seller — Maadi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"As an investor I needed someone who truly understands ROI. Dalia's insight into Sheikh Zayed's growth areas was invaluable. Already closed two deals through her."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">KF</div>
+          <div>
+            <div class="testi-name">Khaled Farouq</div>
+            <div class="testi-role">Investor — Sheikh Zayed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div>
+      <p class="eyebrow-warm" style="color:rgba(184,146,106,.85)">Get in Touch</p>
+      <h2 class="contact-h2">Ready to Find Your Perfect Property?</h2>
+      <p class="contact-text">Whether you're buying, selling, or investing — let's talk. I offer a free 30-minute consultation to understand your needs and outline the best path forward.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.46 2 2 0 0 1 3.56 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="contact-detail-text">+20 100 000 0000</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </div>
+        <div class="contact-detail-text">dalia.elhefny@gmail.com</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-detail-text">Cairo, Egypt</div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="return false">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label>First Name</label>
+          <input type="text" placeholder="Ahmed">
+        </div>
+        <div class="cf-field">
+          <label>Last Name</label>
+          <input type="text" placeholder="Karim">
+        </div>
+      </div>
+      <div class="cf-field">
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+      <div class="cf-field">
+        <label>I'm interested in</label>
+        <select>
+          <option value="" disabled selected>Select…</option>
+          <option>Buying a property</option>
+          <option>Selling a property</option>
+          <option>Renting</option>
+          <option>Investment advice</option>
+        </select>
+      </div>
+      <div class="cf-field" style="margin-bottom:0">
+        <label>Message</label>
+        <textarea placeholder="Tell me about what you're looking for…"></textarea>
+      </div>
+      <button type="submit" class="cf-submit">Send Message →</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">D.ElHefny</div>
+    <div class="footer-copy">© 2025 Dalia ElHefny. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#properties">Properties</a>
+      <a href="#agent">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
