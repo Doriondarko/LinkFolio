@@ -156,103 +156,7 @@
   h1.hero-h1 .strike{position:relative;display:inline-block;color:var(--muted)}
   h1.hero-h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:6px;background:var(--ink);transform:rotate(-3deg)}
 
-  /* MOLTEN GOLD H1 — replicates the reference image */
-  .gold-h1{position:relative;z-index:2}
-  .gold-h1 .hl-line{
-    position:relative;
-    display:block;
-    color:#fafaf7;            /* white base layer */
-    isolation:isolate;
-  }
-  /* Gold overlay — duplicates the text via attr() and clips a vertical gold gradient to the glyphs */
-  .gold-h1 .hl-line::before{
-    content:attr(data-text);
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    background:
-      /* moving shimmer streak */
-      linear-gradient(110deg,
-        transparent 25%,
-        rgba(255,255,248,.78) 40%,
-        rgba(255,255,248,0) 56%
-      ),
-      /* horizontal pockets of richer gold */
-      radial-gradient(ellipse 40% 70% at 18% 75%,rgba(255,224,121,.5),transparent 60%),
-      radial-gradient(ellipse 40% 70% at 78% 80%,rgba(212,160,42,.45),transparent 60%),
-      /* vertical body gradient — white top half, dense gold bottom half */
-      linear-gradient(180deg,
-        transparent 0%,
-        transparent 48%,
-        rgba(255,248,210,.30) 56%,
-        rgba(255,224,121,.85) 65%,
-        #ffd86a 74%,
-        #e6b73d 85%,
-        #b8861f 94%,
-        #5a3d0a 100%
-      );
-    background-size:220% 100%, 100% 100%, 100% 100%, 100% 100%;
-    background-position:-110% 0, 0 0, 0 0, 0 0;
-    background-repeat:no-repeat;
-    -webkit-background-clip:text;
-            background-clip:text;
-    color:transparent;
-    animation:goldStreak 7s linear infinite, goldOoze 8s ease-in-out infinite;
-    filter:drop-shadow(0 6px 28px rgba(255,210,60,.42)) drop-shadow(0 2px 8px rgba(255,255,190,.22));
-  }
-  @keyframes goldStreak{
-    0%   { background-position:-110% 0, 0 0, 0 0, 0 0; }
-    100% { background-position: 210% 0, 0 0, 0 0, 0 0; }
-  }
-  @keyframes goldOoze{
-    0%,100% { filter: drop-shadow(0 6px 28px rgba(255,210,60,.42)) drop-shadow(0 2px 8px rgba(255,255,190,.22)); }
-    50%     { filter: drop-shadow(0 8px 36px rgba(255,210,60,.58)) drop-shadow(0 3px 12px rgba(255,255,200,.32)); }
-  }
-  /* Violet rim halo behind gold areas */
-  .gold-h1 .hl-line::after{
-    content:"";
-    position:absolute;
-    left:-4%;right:-4%;
-    top:55%;bottom:-10%;
-    background:radial-gradient(ellipse 70% 80% at 50% 60%,
-      rgba(146,90,200,.18),
-      rgba(146,90,200,.06) 45%,
-      transparent 70%);
-    z-index:-1;
-    pointer-events:none;
-    filter:blur(12px);
-  }
-
-
-  /* Detached floating gold bead between words */
-  .float-bead{
-    position:absolute;
-    width:clamp(10px,1.1vw,18px);
-    height:clamp(10px,1.1vw,18px);
-    border-radius:50%;
-    background:radial-gradient(circle at 32% 28%,#fff8d0 0%,#ffe079 28%,#d4a02a 65%,#5a3d0a 100%);
-    box-shadow:
-      0 0 14px rgba(212,160,42,.45),
-      0 4px 8px rgba(0,0,0,.45),
-      inset -2px -3px 5px rgba(0,0,0,.35);
-    pointer-events:none;
-    z-index:5;
-    top:-22%;
-    left:62%;
-    animation:beadFloat 4.5s ease-in-out infinite;
-  }
-  @keyframes beadFloat{
-    0%,100% { transform:translate(0,0); }
-    50%     { transform:translate(2px,-9px); }
-  }
-
-  @media(max-width:720px){
-    .float-bead{top:-12%;left:68%}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .gold-h1 .hl-line::before{ animation:none; }
-    .float-bead{ animation:none; }
-  }
+  @media(prefers-reduced-motion:reduce){}
 
   .lede{
     font-family:'Inter Tight',sans-serif;
@@ -780,9 +684,8 @@
       <span class="eyebrow"><span class="dot"></span>Only 2 spots left in May</span>
       <span class="eyebrow warm">100+ sites delivered</span>
     </div>
-    <h1 class="hero-h1 gold-h1">
-      <span class="hl-line" data-text="Look expensive. In 14">Look expensive. In 14<span class="float-bead" aria-hidden="true"></span></span>
-      <span class="hl-line" data-text="days. Or refund.">days. Or refund.</span>
+    <h1 class="hero-h1">
+      Look expensive. In 14<br>days. Or refund.
     </h1>
     <p class="lede reveal">We pull your copy from <strong>LinkedIn</strong>. You write nothing. <strong>2,000 EGP</strong> locks your spot — pay the rest only when you approve every pixel.</p>
     <div class="hero-actions reveal">
